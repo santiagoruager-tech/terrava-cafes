@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nuestros Cafés — Terrava</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:        #fdece5;
+      --orange:       #e94e24;
+      --orange-dark:  #b93d18;
+      --black:        #1f201d;
+      --green:        #368234;
+      --blue:         #2a6ab2;
+      --yellow:       #fbbb21;
+
+      --c1: #368234;   /* Néctar Paraíso   — verde  */
+      --c2: #2a6ab2;   /* Bourbon Amarelo  — azul   */
+      --c3: #1f201d;   /* Mineira          — negro  */
+      --c4: #b93d18;   /* Supremo Castillo — terracota */
+      --c5: #5c3317;   /* Colombia Caturra — espresso  */
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--cream);
+      font-family: 'Space Mono', monospace;
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 20px 16px;
+    }
+    .tagline {
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+    .logo {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: 16px;
+      letter-spacing: .04em;
+      color: var(--orange);
+      text-transform: uppercase;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 4px 20px 0;
+    }
+    .hero-title {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: clamp(72px, 24vw, 148px);
+      line-height: .88;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: -.01em;
+    }
+    .hero-sub {
+      margin-top: 18px;
+      font-size: 11px;
+      line-height: 1.65;
+      color: var(--black);
+      letter-spacing: .02em;
+      opacity: .7;
+      max-width: 320px;
+    }
+
+    .divider {
+      height: 3px;
+      background: var(--orange);
+      margin: 28px 20px 32px;
+      border-radius: 2px;
+    }
+
+    /* ── CARDS ── */
+    .cafes {
+      padding: 0 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .cafe {
+      border-radius: 6px;
+      overflow: hidden;
+      /* subtle lift on hover for desktop */
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    @media (hover: hover) {
+      .cafe:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 24px rgba(0,0,0,.12);
+      }
+    }
+
+    /* coloured header block */
+    .cafe-top {
+      padding: 18px 20px 16px;
+      position: relative;
+    }
+    .cafe-top.c1 { background: var(--c1); }
+    .cafe-top.c2 { background: var(--c2); }
+    .cafe-top.c3 { background: var(--c3); }
+    .cafe-top.c4 { background: var(--c4); }
+    .cafe-top.c5 { background: var(--c5); }
+
+    .cafe-num {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 2px;
+    }
+    .cafe-name {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: clamp(38px, 11vw, 58px);
+      line-height: .92;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: -.01em;
+    }
+    .cafe-origin {
+      margin-top: 8px;
+      font-size: 9px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.65);
+    }
+
+    /* body */
+    .cafe-body {
+      background: var(--cream);
+      padding: 14px 20px 18px;
+      border: 1px solid rgba(0,0,0,.07);
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+    }
+
+    .cafe-meta {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 12px;
+    }
+    .meta-item {}
+    .meta-label {
+      font-size: 8px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.38);
+      line-height: 1;
+      margin-bottom: 3px;
+    }
+    .meta-val {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: var(--black);
+      line-height: 1;
+    }
+
+    .notes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 12px;
+    }
+    .chip {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: 99px;
+      border: 1.5px solid currentColor;
+      line-height: 1;
+    }
+    .chip.c1 { color: var(--c1); }
+    .chip.c2 { color: var(--c2); }
+    .chip.c3 { color: var(--c3); }
+    .chip.c4 { color: var(--c4); }
+    .chip.c5 { color: var(--c5); }
+
+    .cafe-desc {
+      font-size: 11px;
+      line-height: 1.7;
+      color: rgba(0,0,0,.6);
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: var(--orange);
+      margin-top: 40px;
+      padding: 36px 20px 32px;
+    }
+    .footer-label {
+      font-size: 9px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 6px;
+    }
+    .footer-title {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: clamp(38px, 11vw, 64px);
+      line-height: .9;
+      color: #fff;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .footer-text {
+      font-size: 11px;
+      line-height: 1.7;
+      color: rgba(255,255,255,.82);
+      max-width: 340px;
+      margin-bottom: 28px;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .footer-tagline {
+      font-family: 'Caveat', cursive;
+      font-size: 18px;
+      color: rgba(255,255,255,.55);
+    }
+    .footer-logo {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+      letter-spacing: .04em;
+      color: rgba(255,255,255,.55);
+      text-transform: uppercase;
+    }
+
+    /* ── RESPONSIVE: wider screens ── */
+    @media (min-width: 600px) {
+      .cafes { padding: 0 20px; max-width: 560px; margin: 0 auto; }
+      .hero, .site-header, .divider { max-width: 560px; margin-left: auto; margin-right: auto; padding-left: 20px; padding-right: 20px; }
+      .divider { margin-left: auto; margin-right: auto; }
+      .site-footer { padding: 48px 40px 40px; }
+      .footer-title { font-size: 72px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <span class="tagline">Desde la memoria</span>
+    <span class="logo">Terrava</span>
+  </header>
+
+  <section class="hero">
+    <h1 class="hero-title">NUESTROS<br>CAFÉS</h1>
+    <p class="hero-sub">Cinco orígenes elegidos a mano.<br>No traemos todo — traemos lo que vale la pena.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <div class="cafes">
+
+    <!-- 01 Néctar Paraíso -->
+    <article class="cafe">
+      <div class="cafe-top c1">
+        <div class="cafe-num">01</div>
+        <div class="cafe-name">NÉCTAR<br>PARAÍSO</div>
+        <div class="cafe-origin">Brasil · Cerrado Mineiro</div>
+      </div>
+      <div class="cafe-body">
+        <div class="cafe-meta">
+          <div class="meta-item">
+            <div class="meta-label">Variedad</div>
+            <div class="meta-val">Paraíso GC</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Proceso</div>
+            <div class="meta-val">Natural</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Altura</div>
+            <div class="meta-val">1.095 msnm</div>
+          </div>
+        </div>
+        <div class="notes">
+          <span class="chip c1">Azúcar moreno</span>
+          <span class="chip c1">Caramelo</span>
+          <span class="chip c1">Miel</span>
+        </div>
+        <p class="cafe-desc">Un café brasileño dulce, redondo y muy amable. Cuerpo cremoso, acidez suave y fácil de tomar todos los días.</p>
+      </div>
+    </article>
+
+    <!-- 02 Bourbon Amarelo -->
+    <article class="cafe">
+      <div class="cafe-top c2">
+        <div class="cafe-num">02</div>
+        <div class="cafe-name">BOURBON<br>AMARELO</div>
+        <div class="cafe-origin">Brasil · Cerrado Mineiro</div>
+      </div>
+      <div class="cafe-body">
+        <div class="cafe-meta">
+          <div class="meta-item">
+            <div class="meta-label">Variedad</div>
+            <div class="meta-val">Bourbon Amarelo</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Proceso</div>
+            <div class="meta-val">Natural</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Altura</div>
+            <div class="meta-val">1.020 msnm</div>
+          </div>
+        </div>
+        <div class="notes">
+          <span class="chip c2">Vino</span>
+          <span class="chip c2">Caramelo</span>
+          <span class="chip c2">Chocolate</span>
+          <span class="chip c2">Golosina</span>
+        </div>
+        <p class="cafe-desc">De mucho carácter y personalidad. Perfil intenso y expresivo, con cuerpo cremoso y un postgusto largo.</p>
+      </div>
+    </article>
+
+    <!-- 03 Mineira -->
+    <article class="cafe">
+      <div class="cafe-top c3">
+        <div class="cafe-num">03</div>
+        <div class="cafe-name">MINEIRA</div>
+        <div class="cafe-origin">Brasil · Cerrado Mineiro</div>
+      </div>
+      <div class="cafe-body">
+        <div class="cafe-meta">
+          <div class="meta-item">
+            <div class="meta-label">Variedad</div>
+            <div class="meta-val">Mineira</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Proceso</div>
+            <div class="meta-val">Natural</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Altura</div>
+            <div class="meta-val">1.020 msnm</div>
+          </div>
+        </div>
+        <div class="notes">
+          <span class="chip c3">Chocolate con leche</span>
+          <span class="chip c3">Caramelo</span>
+          <span class="chip c3">Avellana</span>
+          <span class="chip c3">Limón</span>
+          <span class="chip c3">Miel</span>
+        </div>
+        <p class="cafe-desc">Elegante, expresivo y diferente. En taza: cremoso, complejo y con una acidez cítrica agradable.</p>
+      </div>
+    </article>
+
+    <!-- 04 Supremo Castillo -->
+    <article class="cafe">
+      <div class="cafe-top c4">
+        <div class="cafe-num">04</div>
+        <div class="cafe-name">SUPREMO<br>CASTILLO</div>
+        <div class="cafe-origin">Colombia · Huila</div>
+      </div>
+      <div class="cafe-body">
+        <div class="cafe-meta">
+          <div class="meta-item">
+            <div class="meta-label">Variedades</div>
+            <div class="meta-val">Castillo · Colombia · Caturra</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Proceso</div>
+            <div class="meta-val">Lavado</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Altura</div>
+            <div class="meta-val">1.500 msnm</div>
+          </div>
+        </div>
+        <div class="notes">
+          <span class="chip c4">Chocolate</span>
+          <span class="chip c4">Caramelo</span>
+          <span class="chip c4">Fruta roja</span>
+        </div>
+        <p class="cafe-desc">Un colombiano clásico, dulce y muy disfrutable. Taza equilibrada, cuerpo cremoso y un final prolongado.</p>
+      </div>
+    </article>
+
+    <!-- 05 Colombia Caturra -->
+    <article class="cafe">
+      <div class="cafe-top c5">
+        <div class="cafe-num">05</div>
+        <div class="cafe-name">COLOMBIA<br>CATURRA</div>
+        <div class="cafe-origin">Colombia · Inzá, Cauca</div>
+      </div>
+      <div class="cafe-body">
+        <div class="cafe-meta">
+          <div class="meta-item">
+            <div class="meta-label">Variedades</div>
+            <div class="meta-val">Colombia · Caturra</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Proceso</div>
+            <div class="meta-val">Lavado</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">Altura</div>
+            <div class="meta-val">1.800 msnm</div>
+          </div>
+        </div>
+        <div class="notes">
+          <span class="chip c5">Frutas amarillas</span>
+          <span class="chip c5">Chocolate</span>
+          <span class="chip c5">Miel</span>
+          <span class="chip c5">Almendra tostada</span>
+        </div>
+        <p class="cafe-desc">Limpio, balanceado y aromático. Cuerpo sedoso, acidez cítrica suave y mucha claridad en taza.</p>
+      </div>
+    </article>
+
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-label">Aclaración</div>
+    <div class="footer-title">EN GRANO<br>O MOLIDO</div>
+    <p class="footer-text">
+      Todos nuestros cafés pueden pedirse en grano o molidos.<br><br>
+      Si lo pedís molido, indicanos el método de preparación —espresso, moka, prensa francesa, filtro, cafetera eléctrica u otro— para molerlo acorde y ayudarte a lograr una mejor taza.
+    </p>
+    <div class="footer-bottom">
+      <span class="footer-tagline">desde la memoria</span>
+      <span class="footer-logo">Terrava</span>
+    </div>
+  </footer>
+
+</body>
+</html>
