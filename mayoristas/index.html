@@ -398,7 +398,7 @@
   <header class="site-header">
     <div class="header-left">
       <span class="tagline">Desde la memoria</span>
-      <span class="header-sub" id="js-header-sub">Precios mayoristas · Mayo 2026</span>
+      <span class="header-sub" id="js-header-sub">Precios mayoristas · Junio 2026</span>
     </div>
     <a href="/" class="logo" aria-label="Terrava — ir al inicio">Terrava</a>
   </header>
@@ -409,7 +409,7 @@
   </section>
 
   <div class="info-bar" id="js-info-bar">
-    <div class="info-item">Mayo 2026</div>
+    <div class="info-item">Junio 2026</div>
     <div class="info-item">Precios en ARS</div>
     <div class="info-item">Venta por kg</div>
     <div class="info-item">250&nbsp;g para reventa</div>
@@ -445,14 +445,14 @@
      Los datos inline se usan solo si el JSON no carga (ej. entorno local).
      En producción el fetch siempre prevalece.
   ─────────────────────────────────────────────────────────────────────── */
-  var FALLBACK = {"vigencia":"Mayo 2026","moneda":"ARS","pedidoMinimo":"1 kg por variedad","config":{"whatsapp":"5492215079937","whatsappMensaje":"Hola Terrava, vi la lista mayorista y quiero hacer una consulta.","whatsappDisplay":"+54 9 221 507-9937","mail":"hola@terrava.ar","mailAsunto":"Consulta mayorista Terrava"},"cafes":[{"numero":"01","nombre":"NÉCTAR PARAÍSO","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.095 msnm","proceso":"Natural","sca":"83","notas":["Azúcar moreno","Caramelo","Miel"],"perfil":"Dulce y redondo. Acidez cítrica media, cuerpo cremoso y final largo.","precio250":11500,"pvpSugerido250":15000,"precioKg":45000,"color":"c1","disponible":true},{"numero":"02","nombre":"BOURBON AMARELO","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.020 msnm","proceso":"Natural","sca":"86","badge":"Tostado 25/05","notas":["Vino","Caramelo","Chocolate","Golosina"],"perfil":"Intenso y expresivo. Acidez tartárica, cuerpo cremoso y postgusto largo.","precio250":13500,"pvpSugerido250":18000,"precioKg":49000,"color":"c2","disponible":true},{"numero":"03","nombre":"MINEIRA","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.020 msnm","proceso":"Natural · Orgánico","sca":"86.5","badge":"Tostado 25/05","notas":["Chocolate con leche","Caramelo","Avellana","Limón","Miel"],"perfil":"Complejo y elegante. Acidez cítrica, cuerpo cremoso y perfil dulce.","precio250":13500,"pvpSugerido250":18000,"precioKg":49000,"color":"c3","disponible":true},{"numero":"04","nombre":"SUPREMO CASTILLO","origen":"Colombia","region":"Huila","altura":"1.845 msnm","proceso":"Lavado","sca":"83.5","notas":["Chocolate","Caramelo","Fruta roja"],"perfil":"Cítrico y equilibrado. Acidez cítrica, cuerpo cremoso y final prolongado.","precio250":15000,"pvpSugerido250":21000,"precioKg":52000,"color":"c4","disponible":true},{"numero":"05","nombre":"COLOMBIA CATURRA","origen":"Colombia","region":"Inzá, Cauca","altura":"1.800 msnm","proceso":"Lavado","sca":"84.75","notas":["Frutas amarillas","Chocolate","Miel","Almendra tostada"],"perfil":"Limpio y aromático. Acidez cítrica, cuerpo sedoso y taza clara.","precio250":16000,"pvpSugerido250":22000,"precioKg":54000,"color":"c5","disponible":true}]};
+  var FALLBACK = {"vigencia":"Junio 2026","moneda":"ARS","config":{"whatsapp":"5492215079937","whatsappMensaje":"Hola Terrava, vi la lista mayorista y quiero hacer una consulta.","whatsappDisplay":"+54 9 221 507-9937","mail":"hola@terrava.ar","mailAsunto":"Consulta mayorista Terrava"},"cafes":[{"numero":"01","nombre":"NÉCTAR PARAÍSO","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.095 msnm","proceso":"Natural","notas":["Azúcar moreno","Caramelo","Miel"],"perfil":"Dulce y redondo. Acidez cítrica media, cuerpo cremoso y final largo.","precio250":11500,"pvpSugerido250":15000,"precioKg":45000,"color":"c1","disponible":true},{"numero":"02","nombre":"BOURBON AMARELO","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.020 msnm","proceso":"Natural","notas":["Vino","Caramelo","Chocolate","Golosina"],"perfil":"Intenso y expresivo. Acidez tartárica, cuerpo cremoso y postgusto largo.","precio250":13500,"pvpSugerido250":18000,"precioKg":49000,"color":"c2","disponible":true},{"numero":"03","nombre":"MINEIRA","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.020 msnm","proceso":"Natural · Orgánico","notas":["Chocolate con leche","Caramelo","Avellana","Limón","Miel"],"perfil":"Complejo y elegante. Acidez cítrica, cuerpo cremoso y perfil dulce.","precio250":13500,"pvpSugerido250":18000,"precioKg":49000,"color":"c3","disponible":true},{"numero":"04","nombre":"SUPREMO CASTILLO","origen":"Colombia","region":"Huila","altura":"1.845 msnm","proceso":"Lavado","notas":["Chocolate","Caramelo","Fruta roja"],"perfil":"Cítrico y equilibrado. Acidez cítrica, cuerpo cremoso y final prolongado.","precio250":15000,"pvpSugerido250":21000,"precioKg":52000,"color":"c4","disponible":true},{"numero":"05","nombre":"COLOMBIA CATURRA","origen":"Colombia","region":"Inzá, Cauca","altura":"1.800 msnm","proceso":"Lavado","notas":["Frutas amarillas","Chocolate","Miel","Almendra tostada"],"perfil":"Limpio y aromático. Acidez cítrica, cuerpo sedoso y taza clara.","precio250":16000,"pvpSugerido250":22000,"precioKg":54000,"color":"c5","disponible":true}]};
 
   function fmt(n) {
     return '$' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   }
 
   function render(data) {
-    var v = data.vigencia || 'Mayo 2026';
+    var v = data.vigencia || 'Junio 2026';
     var cfg = data.config;
 
     // header subtitle
@@ -474,12 +474,10 @@
         + '<div class="cafe-top ' + c.color + '">'
         +   '<div class="cafe-top-row">'
         +     '<span class="cafe-num">' + c.numero + '</span>'
-        +     (c.sca ? '<span class="cafe-sca">SCA&nbsp;' + c.sca + '</span>' : '')
         +   '</div>'
         +   '<div class="cafe-name">' + nm + '</div>'
         +   '<div class="cafe-origin-row">'
         +     '<span class="cafe-origin">' + c.origen + '&nbsp;&middot;&nbsp;' + c.region + '&nbsp;&middot;&nbsp;' + c.altura + '</span>'
-        +     (c.badge ? '<span class="cafe-badge">' + c.badge + '</span>' : '')
         +   '</div>'
         + '</div>'
         + '<div class="cafe-body">'
@@ -524,8 +522,7 @@
 
     // footer info
     document.getElementById('js-footer-info').innerHTML =
-      '<span class="footer-info-item">Pedido mínimo: ' + data.pedidoMinimo + '</span>'
-      + '<span class="footer-info-item">Entrega a coordinar</span>'
+      '<span class="footer-info-item">Entrega a coordinar</span>'
       + '<span class="footer-info-item">' + cfg.mail + '</span>'
       + '<span class="footer-info-item">' + cfg.whatsappDisplay + '</span>'
       + '<span class="footer-info-item">' + v + '</span>';
