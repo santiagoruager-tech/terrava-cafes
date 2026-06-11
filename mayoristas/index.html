@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mayoristas | Terrava</title>
+  <meta name="description" content="Café de especialidad Terrava para cafeterías, locales y negocios.">
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream:  #fdece5;
+      --orange: #e94e24;
+      --black:  #1f201d;
+      --c1: #368234;   /* Néctar Paraíso   — verde        */
+      --c2: #2a6ab2;   /* Bourbon Amarelo  — azul         */
+      --c3: #1f201d;   /* Mineira          — negro        */
+      --c4: #1a7a8c;   /* Supremo Castillo — teal         */
+      --c5: #5c3317;   /* Colombia Caturra — espresso     */
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--cream);
+      font-family: 'Space Mono', monospace;
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── LAYOUT ────────────────────────────────── */
+    .wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* ── HEADER ─────────────────────────────────── */
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 24px 0 18px;
+    }
+    .header-left { display: flex; flex-direction: column; gap: 4px; }
+    .tagline {
+      font-size: 9px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--orange);
+    }
+    .header-sub {
+      font-size: 8px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.36);
+    }
+    .logo {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: 18px;
+      letter-spacing: .04em;
+      color: var(--orange);
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    /* ── HERO ───────────────────────────────────── */
+    .hero { padding: 6px 0 0; }
+    .hero-title {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: clamp(70px, 22vw, 144px);
+      line-height: .87;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: -.01em;
+    }
+    .hero-sub {
+      margin-top: 16px;
+      font-size: 11px;
+      line-height: 1.75;
+      color: rgba(0,0,0,.56);
+      letter-spacing: .015em;
+      max-width: 390px;
+    }
+
+    /* ── INFO BAR ───────────────────────────────── */
+    .info-bar {
+      display: flex;
+      flex-wrap: nowrap;
+      margin: 30px 0 26px;
+      border-top: 2.5px solid var(--orange);
+      border-bottom: 2.5px solid var(--orange);
+      padding: 9px 0;
+      overflow: hidden;
+    }
+    .info-item {
+      flex: 1 1 0;
+      text-align: center;
+      font-size: 7.5px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.48);
+      padding: 2px 4px;
+      border-right: 1px solid rgba(0,0,0,.1);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .info-item:last-child { border-right: none; }
+
+    /* ── CARDS ──────────────────────────────────── */
+    .cafes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cafe {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 14px rgba(0,0,0,.07);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    @media (hover: hover) {
+      .cafe:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 22px rgba(0,0,0,.12);
+      }
+    }
+
+    /* coloured header */
+    .cafe-top { padding: 16px 20px 14px; }
+    .cafe-top.c1 { background: var(--c1); }
+    .cafe-top.c2 { background: var(--c2); }
+    .cafe-top.c3 { background: var(--c3); }
+    .cafe-top.c4 { background: var(--c4); }
+    .cafe-top.c5 { background: var(--c5); }
+
+    .cafe-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2px;
+    }
+    .cafe-num {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      color: rgba(255,255,255,.4);
+    }
+    .cafe-sca {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      color: rgba(255,255,255,.55);
+      background: rgba(255,255,255,.12);
+      padding: 3px 9px;
+      border-radius: 99px;
+    }
+    .cafe-name {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: clamp(36px, 10vw, 54px);
+      line-height: .9;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: -.01em;
+      margin-bottom: 8px;
+    }
+    .cafe-origin-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+    }
+    .cafe-origin {
+      font-size: 8.5px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.56);
+    }
+    .cafe-badge {
+      font-size: 7.5px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.62);
+      background: rgba(255,218,70,.9);
+      padding: 2px 9px;
+      border-radius: 99px;
+    }
+
+    /* card body */
+    .cafe-body {
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.06);
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      padding: 14px 20px 0;
+    }
+    .cafe-meta { margin-bottom: 11px; }
+    .meta-label {
+      font-size: 7.5px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.3);
+      margin-bottom: 2px;
+    }
+    .meta-val {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      color: var(--black);
+    }
+    .notes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 11px;
+    }
+    .chip {
+      font-size: 7.5px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: 99px;
+      border: 1.5px solid currentColor;
+      line-height: 1;
+    }
+    .chip.c1 { color: var(--c1); }
+    .chip.c2 { color: var(--c2); }
+    .chip.c3 { color: var(--c3); }
+    .chip.c4 { color: var(--c4); }
+    .chip.c5 { color: var(--c5); }
+
+    .cafe-perfil {
+      font-size: 10.5px;
+      line-height: 1.68;
+      color: rgba(0,0,0,.5);
+      font-style: italic;
+    }
+
+    /* price row */
+    .cafe-prices {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 1px solid rgba(0,0,0,.07);
+      margin-top: 14px;
+    }
+    .price-col {
+      padding: 12px 6px 16px;
+      text-align: center;
+      border-right: 1px solid rgba(0,0,0,.07);
+    }
+    .price-col:last-child { border-right: none; }
+    .price-label {
+      font-size: 7px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.3);
+      margin-bottom: 5px;
+      line-height: 1.4;
+    }
+    .price-num {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 700;
+      font-size: clamp(15px, 4.5vw, 21px);
+      color: var(--black);
+      line-height: 1;
+    }
+    /* kg price: larger + orange */
+    .price-col.price-kg .price-label { color: rgba(233,78,36,.55); font-weight: 700; }
+    .price-col.price-kg .price-num {
+      font-size: clamp(20px, 6vw, 30px);
+      color: var(--orange);
+    }
+
+    /* ── CTA ────────────────────────────────────── */
+    .cta-section {
+      background: var(--orange);
+      margin-top: 48px;
+      padding: 42px 0 38px;
+    }
+    .cta-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .cta-label {
+      font-size: 9px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 8px;
+    }
+    .cta-title {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: clamp(34px, 10vw, 60px);
+      line-height: .87;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .cta-text {
+      font-size: 11px;
+      line-height: 1.78;
+      color: rgba(255,255,255,.82);
+      max-width: 400px;
+      margin-bottom: 30px;
+    }
+    .cta-buttons { display: flex; flex-wrap: wrap; gap: 10px; }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 99px;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background .15s, border-color .15s, color .15s;
+    }
+    .cta-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .btn-wsp {
+      background: rgba(255,255,255,.18);
+      border: 1.5px solid rgba(255,255,255,.5);
+      color: #fff;
+    }
+    .btn-wsp:hover { background: rgba(255,255,255,.28); border-color: #fff; }
+    .btn-mail {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,.3);
+      color: rgba(255,255,255,.82);
+    }
+    .btn-mail:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.6); color: #fff; }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    .site-footer { padding: 26px 0 24px; }
+    .footer-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .footer-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 22px;
+      margin-bottom: 18px;
+    }
+    .footer-info-item {
+      font-size: 8.5px;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.34);
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid rgba(0,0,0,.08);
+      padding-top: 16px;
+    }
+    .footer-tagline {
+      font-family: 'Caveat', cursive;
+      font-size: 18px;
+      color: rgba(0,0,0,.26);
+    }
+    .footer-logo {
+      font-family: 'Big Shoulders Display', sans-serif;
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--orange);
+      opacity: .55;
+    }
+
+    /* ── MOBILE TWEAKS ───────────────────────────── */
+    @media (max-width: 400px) {
+      .info-item { font-size: 6px; letter-spacing: .08em; }
+      .price-col { padding: 10px 3px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="site-header">
+    <div class="header-left">
+      <span class="tagline">Desde la memoria</span>
+      <span class="header-sub" id="js-header-sub">Precios mayoristas · Mayo 2026</span>
+    </div>
+    <a href="/" class="logo" aria-label="Terrava — ir al inicio">Terrava</a>
+  </header>
+
+  <section class="hero">
+    <h1 class="hero-title">NUESTROS<br>CAFÉS</h1>
+    <p class="hero-sub">Cinco cafés. Cinco perfiles. Elegidos para distintos momentos, métodos y formas de prepararlos.<br>Venta por kilo y 250&nbsp;g para reventa.</p>
+  </section>
+
+  <div class="info-bar" id="js-info-bar">
+    <div class="info-item">Mayo 2026</div>
+    <div class="info-item">Precios en ARS</div>
+    <div class="info-item">Venta por kg</div>
+    <div class="info-item">250&nbsp;g para reventa</div>
+  </div>
+
+  <div class="cafes" id="js-cafes">
+    <p style="font-size:11px;opacity:.35;padding:24px 0;letter-spacing:.1em;text-transform:uppercase;">Cargando…</p>
+  </div>
+</div>
+
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-label">Hacé tu pedido</div>
+    <h2 class="cta-title">SI VAS A TOMAR CAFÉ,<br>QUE SEA TERRAVA.</h2>
+    <p class="cta-text">Cinco perfiles, en grano o molido. Coordinamos entrega y disponibilidad según tu local. Escribinos y armamos tu pedido.</p>
+    <div class="cta-buttons" id="js-cta-btns"></div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-info" id="js-footer-info"></div>
+    <div class="footer-bottom">
+      <span class="footer-tagline">desde la memoria</span>
+      <span class="footer-logo">Terrava</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ─── DATOS INLINE (fallback si fetch falla) ─────────────────────────────
+     Para actualizar precios: editar /data/precios-mayoristas.json
+     Los datos inline se usan solo si el JSON no carga (ej. entorno local).
+     En producción el fetch siempre prevalece.
+  ─────────────────────────────────────────────────────────────────────── */
+  var FALLBACK = {"vigencia":"Mayo 2026","moneda":"ARS","pedidoMinimo":"1 kg por variedad","config":{"whatsapp":"5492215079937","whatsappMensaje":"Hola Terrava, vi la lista mayorista y quiero hacer una consulta.","whatsappDisplay":"+54 9 221 507-9937","mail":"hola@terrava.ar","mailAsunto":"Consulta mayorista Terrava"},"cafes":[{"numero":"01","nombre":"NÉCTAR PARAÍSO","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.095 msnm","proceso":"Natural","sca":"83","notas":["Azúcar moreno","Caramelo","Miel"],"perfil":"Dulce y redondo. Acidez cítrica media, cuerpo cremoso y final largo.","precio250":11500,"pvpSugerido250":15000,"precioKg":45000,"color":"c1","disponible":true},{"numero":"02","nombre":"BOURBON AMARELO","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.020 msnm","proceso":"Natural","sca":"86","badge":"Tostado 25/05","notas":["Vino","Caramelo","Chocolate","Golosina"],"perfil":"Intenso y expresivo. Acidez tartárica, cuerpo cremoso y postgusto largo.","precio250":13500,"pvpSugerido250":18000,"precioKg":49000,"color":"c2","disponible":true},{"numero":"03","nombre":"MINEIRA","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.020 msnm","proceso":"Natural · Orgánico","sca":"86.5","badge":"Tostado 25/05","notas":["Chocolate con leche","Caramelo","Avellana","Limón","Miel"],"perfil":"Complejo y elegante. Acidez cítrica, cuerpo cremoso y perfil dulce.","precio250":13500,"pvpSugerido250":18000,"precioKg":49000,"color":"c3","disponible":true},{"numero":"04","nombre":"SUPREMO CASTILLO","origen":"Colombia","region":"Huila","altura":"1.845 msnm","proceso":"Lavado","sca":"83.5","notas":["Chocolate","Caramelo","Fruta roja"],"perfil":"Cítrico y equilibrado. Acidez cítrica, cuerpo cremoso y final prolongado.","precio250":15000,"pvpSugerido250":21000,"precioKg":52000,"color":"c4","disponible":true},{"numero":"05","nombre":"COLOMBIA CATURRA","origen":"Colombia","region":"Inzá, Cauca","altura":"1.800 msnm","proceso":"Lavado","sca":"84.75","notas":["Frutas amarillas","Chocolate","Miel","Almendra tostada"],"perfil":"Limpio y aromático. Acidez cítrica, cuerpo sedoso y taza clara.","precio250":16000,"pvpSugerido250":22000,"precioKg":54000,"color":"c5","disponible":true}]};
+
+  function fmt(n) {
+    return '$' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
+  function render(data) {
+    var v = data.vigencia || 'Mayo 2026';
+    var cfg = data.config;
+
+    // header subtitle
+    var hSub = document.getElementById('js-header-sub');
+    if (hSub) hSub.textContent = 'Precios mayoristas · ' + v;
+
+    // info bar
+    var bar = document.getElementById('js-info-bar');
+    if (bar) {
+      bar.innerHTML = [v, 'Precios en ARS', 'Venta por kg', '250 g para reventa']
+        .map(function(t){ return '<div class="info-item">' + t + '</div>'; }).join('');
+    }
+
+    // cards
+    var visible = data.cafes.filter(function(c){ return c.disponible !== false; });
+    document.getElementById('js-cafes').innerHTML = visible.map(function(c) {
+      var nm = c.nombre.replace(' ', '<br>');
+      return '<article class="cafe">'
+        + '<div class="cafe-top ' + c.color + '">'
+        +   '<div class="cafe-top-row">'
+        +     '<span class="cafe-num">' + c.numero + '</span>'
+        +     (c.sca ? '<span class="cafe-sca">SCA&nbsp;' + c.sca + '</span>' : '')
+        +   '</div>'
+        +   '<div class="cafe-name">' + nm + '</div>'
+        +   '<div class="cafe-origin-row">'
+        +     '<span class="cafe-origin">' + c.origen + '&nbsp;&middot;&nbsp;' + c.region + '&nbsp;&middot;&nbsp;' + c.altura + '</span>'
+        +     (c.badge ? '<span class="cafe-badge">' + c.badge + '</span>' : '')
+        +   '</div>'
+        + '</div>'
+        + '<div class="cafe-body">'
+        +   '<div class="cafe-meta">'
+        +     '<div class="meta-label">Proceso</div>'
+        +     '<div class="meta-val">' + c.proceso + '</div>'
+        +   '</div>'
+        +   '<div class="notes">'
+        +     c.notas.map(function(n){ return '<span class="chip ' + c.color + '">' + n + '</span>'; }).join('')
+        +   '</div>'
+        +   '<p class="cafe-perfil">' + c.perfil + '</p>'
+        +   '<div class="cafe-prices">'
+        +     '<div class="price-col">'
+        +       '<div class="price-label">250&nbsp;g<br>reventa</div>'
+        +       '<div class="price-num">' + fmt(c.precio250) + '</div>'
+        +     '</div>'
+        +     '<div class="price-col">'
+        +       '<div class="price-label">PVP sugerido<br>250&nbsp;g</div>'
+        +       '<div class="price-num">' + fmt(c.pvpSugerido250) + '</div>'
+        +     '</div>'
+        +     '<div class="price-col price-kg">'
+        +       '<div class="price-label">Por&nbsp;kg</div>'
+        +       '<div class="price-num">' + fmt(c.precioKg) + '</div>'
+        +     '</div>'
+        +   '</div>'
+        + '</div>'
+        + '</article>';
+    }).join('');
+
+    // CTA buttons
+    var wspUrl  = 'https://wa.me/' + cfg.whatsapp + '?text=' + encodeURIComponent(cfg.whatsappMensaje);
+    var mailUrl = 'mailto:' + cfg.mail + '?subject=' + encodeURIComponent(cfg.mailAsunto);
+    document.getElementById('js-cta-btns').innerHTML =
+      '<a href="' + wspUrl + '" class="cta-btn btn-wsp" target="_blank" rel="noopener">'
+      + '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.13.332.202.043.72.043.419-.101.824z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.852L.054 23.927l6.227-1.637A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.671-.507-5.194-1.394l-.373-.22-3.864 1.015 1.033-3.77-.242-.386A9.944 9.944 0 0 1 2 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>'
+      + 'Consultar por WhatsApp'
+      + '</a>'
+      + '<a href="' + mailUrl + '" class="cta-btn btn-mail">'
+      + '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>'
+      + 'Pedir lista por mail'
+      + '</a>';
+
+    // footer info
+    document.getElementById('js-footer-info').innerHTML =
+      '<span class="footer-info-item">Pedido mínimo: ' + data.pedidoMinimo + '</span>'
+      + '<span class="footer-info-item">Entrega a coordinar</span>'
+      + '<span class="footer-info-item">' + cfg.mail + '</span>'
+      + '<span class="footer-info-item">' + cfg.whatsappDisplay + '</span>'
+      + '<span class="footer-info-item">' + v + '</span>';
+  }
+
+  // Intenta cargar desde JSON; si falla (local / error), usa FALLBACK inline
+  fetch('/data/precios-mayoristas.json')
+    .then(function(r){ if (!r.ok) throw 0; return r.json(); })
+    .then(render)
+    .catch(function(){ render(FALLBACK); });
+</script>
+</body>
+</html>
