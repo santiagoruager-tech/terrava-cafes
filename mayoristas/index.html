@@ -14,11 +14,11 @@
       --cream:  #fdece5;
       --orange: #e94e24;
       --black:  #1f201d;
-      --c1: #368234;   /* Néctar Paraíso   — verde        */
-      --c2: #2a6ab2;   /* Bourbon Amarelo  — azul         */
-      --c3: #1f201d;   /* Mineira          — negro        */
-      --c4: #1a7a8c;   /* Supremo Castillo — teal         */
-      --c5: #5c3317;   /* Colombia Caturra — espresso     */
+      --c1: #368234;
+      --c2: #2a6ab2;
+      --c3: #1f201d;
+      --c4: #1a7a8c;
+      --c5: #5c3317;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,7 +30,6 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── LAYOUT ────────────────────────────────── */
     .wrap {
       max-width: 640px;
       margin: 0 auto;
@@ -82,9 +81,16 @@
       margin-top: 16px;
       font-size: 11px;
       line-height: 1.75;
-      color: rgba(0,0,0,.56);
+      color: rgba(0,0,0,.58);
       letter-spacing: .015em;
-      max-width: 390px;
+      max-width: 420px;
+    }
+    .hero-meta {
+      margin-top: 10px;
+      font-size: 9px;
+      line-height: 1.6;
+      color: rgba(0,0,0,.38);
+      letter-spacing: .06em;
     }
 
     /* ── INFO BAR ───────────────────────────────── */
@@ -113,6 +119,30 @@
     }
     .info-item:last-child { border-right: none; }
 
+    /* ── BRAND STORY ────────────────────────────── */
+    .brand-story {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(0,0,0,.1);
+    }
+    .brand-story p {
+      font-size: 11px;
+      line-height: 1.8;
+      color: rgba(0,0,0,.52);
+      letter-spacing: .015em;
+      margin-bottom: 14px;
+    }
+    .brand-story p:last-child { margin-bottom: 0; }
+    .formats-text {
+      font-size: 10.5px;
+      line-height: 1.75;
+      color: rgba(0,0,0,.44);
+      letter-spacing: .015em;
+      margin-top: 20px;
+      font-style: italic;
+    }
+    .formats-text strong { font-style: normal; }
+
     /* ── CARDS ──────────────────────────────────── */
     .cafes {
       display: flex;
@@ -133,7 +163,6 @@
       }
     }
 
-    /* coloured header */
     .cafe-top { padding: 16px 20px 14px; }
     .cafe-top.c1 { background: var(--c1); }
     .cafe-top.c2 { background: var(--c2); }
@@ -152,15 +181,6 @@
       font-weight: 700;
       letter-spacing: .14em;
       color: rgba(255,255,255,.4);
-    }
-    .cafe-sca {
-      font-size: 8px;
-      font-weight: 700;
-      letter-spacing: .06em;
-      color: rgba(255,255,255,.55);
-      background: rgba(255,255,255,.12);
-      padding: 3px 9px;
-      border-radius: 99px;
     }
     .cafe-name {
       font-family: 'Big Shoulders Display', sans-serif;
@@ -184,18 +204,7 @@
       text-transform: uppercase;
       color: rgba(255,255,255,.56);
     }
-    .cafe-badge {
-      font-size: 7.5px;
-      font-weight: 700;
-      letter-spacing: .07em;
-      text-transform: uppercase;
-      color: rgba(0,0,0,.62);
-      background: rgba(255,218,70,.9);
-      padding: 2px 9px;
-      border-radius: 99px;
-    }
 
-    /* card body */
     .cafe-body {
       background: #fff;
       border: 1px solid rgba(0,0,0,.06);
@@ -246,59 +255,94 @@
       font-style: italic;
     }
 
-    /* price row */
+    /* ── PRECIO GRID ────────────────────────────── */
     .cafe-prices {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
+      align-items: stretch;
       border-top: 1px solid rgba(0,0,0,.07);
       margin-top: 14px;
     }
     .price-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       padding: 12px 6px 16px;
       text-align: center;
       border-right: 1px solid rgba(0,0,0,.07);
     }
     .price-col:last-child { border-right: none; }
+
     .price-label {
-      font-size: 7px;
-      letter-spacing: .12em;
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .1em;
       text-transform: uppercase;
-      color: rgba(0,0,0,.3);
-      margin-bottom: 5px;
-      line-height: 1.4;
+      color: rgba(0,0,0,.45);
+      line-height: 1;
+      /* fixed height so price numbers align across all 3 columns */
+      height: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .price-mayorista {
+      font-size: 6.5px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.28);
+      margin-top: 8px;
+      margin-bottom: 4px;
     }
     .price-num {
       font-family: 'Big Shoulders Display', sans-serif;
       font-weight: 700;
-      font-size: clamp(15px, 4.5vw, 21px);
+      font-size: clamp(16px, 4.8vw, 22px);
       color: var(--black);
       line-height: 1;
     }
-    /* kg price: larger + orange */
-    .price-col.price-kg .price-label { color: rgba(233,78,36,.55); font-weight: 700; }
+    .price-pvp {
+      font-size: 7px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.28);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    /* kg destacado */
+    .price-col.price-kg .price-label  { color: rgba(233,78,36,.6); }
+    .price-col.price-kg .price-mayorista { color: rgba(233,78,36,.45); }
     .price-col.price-kg .price-num {
       font-size: clamp(20px, 6vw, 30px);
       color: var(--orange);
     }
-    .price-pvp {
-      font-size: 7px;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-      color: rgba(0,0,0,.28);
-      margin-top: 5px;
-      line-height: 1.4;
-    }
     .price-col.price-kg .price-pvp { color: rgba(233,78,36,.38); }
 
-    .disclaimer-text {
-      font-size: 10px;
-      line-height: 1.75;
-      color: rgba(0,0,0,.36);
-      letter-spacing: .015em;
+    /* ── DISCLAIMER ─────────────────────────────── */
+    .disclaimer-wrap {
       border-top: 1px solid rgba(0,0,0,.08);
       padding-top: 22px;
       margin-top: 36px;
       max-width: 560px;
+    }
+    .disclaimer-formats p {
+      font-size: 10px;
+      line-height: 1.7;
+      color: rgba(0,0,0,.42);
+      letter-spacing: .015em;
+    }
+    .disclaimer-formats strong {
+      font-weight: 700;
+      color: rgba(0,0,0,.6);
+    }
+    .disclaimer-pvp {
+      font-size: 9.5px;
+      line-height: 1.65;
+      color: rgba(0,0,0,.30);
+      letter-spacing: .015em;
+      font-style: italic;
+      margin-top: 12px;
     }
 
     /* ── CTA ────────────────────────────────────── */
@@ -351,18 +395,18 @@
       transition: background .15s, border-color .15s, color .15s;
     }
     .cta-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+    .btn-primary {
+      background: #fff;
+      border: 1.5px solid #fff;
+      color: var(--orange);
+    }
+    .btn-primary:hover { background: rgba(255,255,255,.88); }
     .btn-wsp {
       background: rgba(255,255,255,.18);
       border: 1.5px solid rgba(255,255,255,.5);
       color: #fff;
     }
     .btn-wsp:hover { background: rgba(255,255,255,.28); border-color: #fff; }
-    .btn-mail {
-      background: transparent;
-      border: 1.5px solid rgba(255,255,255,.3);
-      color: rgba(255,255,255,.82);
-    }
-    .btn-mail:hover { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.6); color: #fff; }
 
     /* ── FOOTER ─────────────────────────────────── */
     .site-footer { padding: 26px 0 24px; }
@@ -405,53 +449,11 @@
       opacity: .55;
     }
 
-    /* ── BRAND STORY ───────────────────────────────── */
-    .brand-story {
-      margin-top: 28px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(0,0,0,.1);
-    }
-    .brand-story p {
-      font-size: 11px;
-      line-height: 1.8;
-      color: rgba(0,0,0,.52);
-      letter-spacing: .015em;
-      margin-bottom: 14px;
-    }
-    .brand-story p:last-child { margin-bottom: 0; }
-    .formats-text {
-      font-size: 10.5px;
-      line-height: 1.75;
-      color: rgba(0,0,0,.44);
-      letter-spacing: .015em;
-      margin-top: 20px;
-      font-style: italic;
-    }
-    .formats-text strong { font-style: normal; }
-
-    /* ── PRICE MAYORISTA LABEL ────────────────────── */
-    .price-mayorista {
-      font-size: 6.5px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: rgba(0,0,0,.28);
-      margin-top: 6px;
-      margin-bottom: 2px;
-    }
-    .price-col.price-kg .price-mayorista { color: rgba(233,78,36,.45); }
-
-    /* ── CTA PRIMARY BUTTON ───────────────────────── */
-    .btn-primary {
-      background: #fff;
-      border: 1.5px solid #fff;
-      color: var(--orange);
-    }
-    .btn-primary:hover { background: rgba(255,255,255,.88); }
-
-    /* ── MOBILE TWEAKS ───────────────────────────── */
+    /* ── MOBILE ─────────────────────────────────── */
     @media (max-width: 400px) {
       .info-item { font-size: 6px; letter-spacing: .08em; }
       .price-col { padding: 10px 3px 14px; }
+      .price-label { height: auto; min-height: 22px; }
     }
   </style>
 </head>
@@ -467,22 +469,21 @@
   </header>
 
   <section class="hero">
-    <h1 class="hero-title">NUESTROS<br>CAFÉS</h1>
-    <p class="hero-sub">Venta por kg · 250&nbsp;g para reventa · 125&nbsp;g para degustación</p>
+    <h1 class="hero-title">NUESTROS<br>CAFÉS<br>MAYORISTAS</h1>
+    <p class="hero-sub">Café de especialidad para barra, tolva y reventa.</p>
+    <p class="hero-meta">1&nbsp;kg para barra/tolva · 250&nbsp;g para reventa · 125&nbsp;g para degustación</p>
   </section>
 
   <section class="brand-story">
-    <p>Terrava nació de una historia familiar. Somos venezolanos que crecimos con el café como parte del día: en casa, de mañana, antes del trabajo. Un café bien hecho no era un lujo, era el punto de partida.</p>
-    <p>Cuando llegamos a Argentina, empezamos a entender lo que hace diferente a un café de especialidad: el origen, el proceso, el tostado. Decidimos traer eso a la mesa. Buscamos granos que cuenten algo, los tostamos en La Plata con cuidado, y los llevamos a locales que quieren ofrecer más que café.</p>
-    <p>Estos cinco perfiles son los que elegimos para compartir. Cada uno tiene su momento, su forma de prepararse, su carácter.</p>
+    <p>Terrava nace en Argentina a partir de una historia familiar vinculada al café en Venezuela. La familia de uno de sus fundadores tiene fincas cafeteras y creció entre la tierra, la cosecha y el trabajo de finca.</p>
+    <p>Desde esa experiencia elegimos cafés latinoamericanos con criterio, respeto por el origen y perfiles que realmente valgan la pena.</p>
   </section>
   <p class="formats-text">Trabajamos tres formatos mayoristas: <strong>1&nbsp;kg</strong> para barra, tolva o volumen; <strong>250&nbsp;g</strong> para reventa en góndola o mostrador; y <strong>125&nbsp;g</strong> para degustación, regalos o primeras pruebas.</p>
 
   <div class="info-bar" id="js-info-bar">
     <div class="info-item">Junio 2026</div>
     <div class="info-item">Precios en ARS</div>
-    <div class="info-item">Venta por kg</div>
-    <div class="info-item">250&nbsp;g para reventa</div>
+    <div class="info-item">1 kg · 250 g · 125 g</div>
   </div>
 
   <div class="cafes" id="js-cafes">
@@ -491,7 +492,14 @@
 </div>
 
 <div class="wrap">
-  <p class="disclaimer-text">Los precios de 125 g están pensados para degustación, regalos o reventa puntual. Para barra, tolva o consumo operativo recomendamos trabajar por kg. Los PVP sugeridos son referencias para cuidar el posicionamiento de marca y ordenar la reventa.</p>
+  <div class="disclaimer-wrap">
+    <div class="disclaimer-formats">
+      <p><strong>125&nbsp;g</strong> — Degustación, regalos o reventa puntual.</p>
+      <p><strong>250&nbsp;g</strong> — Reventa en góndola o mostrador.</p>
+      <p><strong>1&nbsp;kg</strong> — Barra, tolva o volumen.</p>
+    </div>
+    <p class="disclaimer-pvp">Los PVP sugeridos son referencias para cuidar el posicionamiento de marca y ordenar la reventa.</p>
+  </div>
 </div>
 
 <section class="cta-section">
@@ -529,18 +537,15 @@
     var v = data.vigencia || 'Junio 2026';
     var cfg = data.config;
 
-    // header subtitle
     var hSub = document.getElementById('js-header-sub');
     if (hSub) hSub.textContent = 'Precios mayoristas · ' + v;
 
-    // info bar
     var bar = document.getElementById('js-info-bar');
     if (bar) {
-      bar.innerHTML = [v, 'Precios en ARS', 'Venta por kg', '250 g para reventa']
+      bar.innerHTML = [v, 'Precios en ARS', '1 kg · 250 g · 125 g']
         .map(function(t){ return '<div class="info-item">' + t + '</div>'; }).join('');
     }
 
-    // cards
     var visible = data.cafes.filter(function(c){ return c.disponible !== false; });
     document.getElementById('js-cafes').innerHTML = visible.map(function(c) {
       var nm = c.nombre.replace(' ', '<br>');
@@ -565,31 +570,29 @@
         +   '<p class="cafe-perfil">' + c.perfil + '</p>'
         +   '<div class="cafe-prices">'
         +     '<div class="price-col">'
-        +       '<div class="price-label">125&nbsp;g<br>degustación · reventa</div>'
+        +       '<div class="price-label">125&nbsp;g</div>'
         +       '<div class="price-mayorista">Precio mayorista</div>'
         +       '<div class="price-num">' + fmt(c.precio125) + '</div>'
-        +       '<div class="price-pvp">PVP 125&nbsp;g: ' + fmt(c.pvpSugerido125) + '</div>'
+        +       '<div class="price-pvp">PVP: ' + fmt(c.pvpSugerido125) + '</div>'
         +     '</div>'
         +     '<div class="price-col">'
-        +       '<div class="price-label">250&nbsp;g<br>para reventa</div>'
+        +       '<div class="price-label">250&nbsp;g</div>'
         +       '<div class="price-mayorista">Precio mayorista</div>'
         +       '<div class="price-num">' + fmt(c.precio250) + '</div>'
-        +       '<div class="price-pvp">PVP 250&nbsp;g: ' + fmt(c.pvpSugerido250) + '</div>'
+        +       '<div class="price-pvp">PVP: ' + fmt(c.pvpSugerido250) + '</div>'
         +     '</div>'
         +     '<div class="price-col price-kg">'
-        +       '<div class="price-label">1&nbsp;kg<br>barra · volumen</div>'
+        +       '<div class="price-label">1&nbsp;kg</div>'
         +       '<div class="price-mayorista">Precio mayorista</div>'
         +       '<div class="price-num">' + fmt(c.precioKg) + '</div>'
-        +       '<div class="price-pvp">PVP 1&nbsp;kg: ' + fmt(c.pvpSugerido1kg) + '</div>'
+        +       '<div class="price-pvp">PVP: ' + fmt(c.pvpSugerido1kg) + '</div>'
         +     '</div>'
         +   '</div>'
         + '</div>'
         + '</article>';
     }).join('');
 
-    // CTA buttons
-    var wspUrl  = 'https://wa.me/' + cfg.whatsapp + '?text=' + encodeURIComponent(cfg.whatsappMensaje);
-    var mailUrl = 'mailto:' + cfg.mail + '?subject=' + encodeURIComponent(cfg.mailAsunto);
+    var wspUrl = 'https://wa.me/' + cfg.whatsapp + '?text=' + encodeURIComponent(cfg.whatsappMensaje);
     document.getElementById('js-cta-btns').innerHTML =
       '<a href="' + wspUrl + '" class="cta-btn btn-primary" target="_blank" rel="noopener">'
       + '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.13.332.202.043.72.043.419-.101.824z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.852L.054 23.927l6.227-1.637A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.671-.507-5.194-1.394l-.373-.22-3.864 1.015 1.033-3.77-.242-.386A9.944 9.944 0 0 1 2 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>'
@@ -600,7 +603,6 @@
       + 'Hacer pedido por WhatsApp'
       + '</a>';
 
-    // footer info
     document.getElementById('js-footer-info').innerHTML =
       '<span class="footer-info-item">Entrega a coordinar</span>'
       + '<span class="footer-info-item">' + cfg.mail + '</span>'
@@ -608,7 +610,6 @@
       + '<span class="footer-info-item">' + v + '</span>';
   }
 
-  // Intenta cargar desde JSON; si falla (local / error), usa FALLBACK inline
   fetch('/data/precios-mayoristas.json')
     .then(function(r){ if (!r.ok) throw 0; return r.json(); })
     .then(render)
