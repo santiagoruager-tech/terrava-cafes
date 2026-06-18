@@ -280,6 +280,26 @@
       font-size: clamp(20px, 6vw, 30px);
       color: var(--orange);
     }
+    .price-pvp {
+      font-size: 7px;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,.28);
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+    .price-col.price-kg .price-pvp { color: rgba(233,78,36,.38); }
+
+    .disclaimer-text {
+      font-size: 10px;
+      line-height: 1.75;
+      color: rgba(0,0,0,.36);
+      letter-spacing: .015em;
+      border-top: 1px solid rgba(0,0,0,.08);
+      padding-top: 22px;
+      margin-top: 36px;
+      max-width: 560px;
+    }
 
     /* ── CTA ────────────────────────────────────── */
     .cta-section {
@@ -420,6 +440,10 @@
   </div>
 </div>
 
+<div class="wrap">
+  <p class="disclaimer-text">El precio de 125 g está pensado para degustación, regalos o reventa puntual. Para uso en barra/tolva recomendamos trabajar por kg. Los PVP sugeridos son referencias para cuidar el posicionamiento de marca y ayudar al cliente a estimar su margen de reventa.</p>
+</div>
+
 <section class="cta-section">
   <div class="cta-inner">
     <div class="cta-label">Hacé tu pedido</div>
@@ -445,7 +469,7 @@
      Los datos inline se usan solo si el JSON no carga (ej. entorno local).
      En producción el fetch siempre prevalece.
   ─────────────────────────────────────────────────────────────────────── */
-  var FALLBACK = {"vigencia":"Junio 2026","moneda":"ARS","config":{"whatsapp":"5492215079937","whatsappMensaje":"Hola Terrava, vi la lista mayorista y quiero hacer una consulta.","whatsappDisplay":"+54 9 221 507-9937","mail":"hola@terrava.ar","mailAsunto":"Consulta mayorista Terrava"},"cafes":[{"numero":"01","nombre":"NÉCTAR PARAÍSO","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.095 msnm","proceso":"Natural","notas":["Azúcar moreno","Caramelo","Miel"],"perfil":"Dulce y redondo. Acidez cítrica media, cuerpo cremoso y final largo.","precio250":11500,"pvpSugerido250":15000,"precioKg":45000,"color":"c1","disponible":true},{"numero":"02","nombre":"BOURBON AMARELO","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.020 msnm","proceso":"Natural","notas":["Vino","Caramelo","Chocolate","Golosina"],"perfil":"Intenso y expresivo. Acidez tartárica, cuerpo cremoso y postgusto largo.","precio250":13500,"pvpSugerido250":18000,"precioKg":49000,"color":"c2","disponible":true},{"numero":"03","nombre":"MINEIRA","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.020 msnm","proceso":"Natural · Orgánico","notas":["Chocolate con leche","Caramelo","Avellana","Limón","Miel"],"perfil":"Complejo y elegante. Acidez cítrica, cuerpo cremoso y perfil dulce.","precio250":13500,"pvpSugerido250":18000,"precioKg":49000,"color":"c3","disponible":true},{"numero":"04","nombre":"SUPREMO CASTILLO","origen":"Colombia","region":"Huila","altura":"1.845 msnm","proceso":"Lavado","notas":["Chocolate","Caramelo","Fruta roja"],"perfil":"Cítrico y equilibrado. Acidez cítrica, cuerpo cremoso y final prolongado.","precio250":15000,"pvpSugerido250":21000,"precioKg":52000,"color":"c4","disponible":true},{"numero":"05","nombre":"COLOMBIA CATURRA","origen":"Colombia","region":"Inzá, Cauca","altura":"1.800 msnm","proceso":"Lavado","notas":["Frutas amarillas","Chocolate","Miel","Almendra tostada"],"perfil":"Limpio y aromático. Acidez cítrica, cuerpo sedoso y taza clara.","precio250":16000,"pvpSugerido250":22000,"precioKg":54000,"color":"c5","disponible":true}]};
+  var FALLBACK = {"vigencia":"Junio 2026","moneda":"ARS","config":{"whatsapp":"5492215079937","whatsappMensaje":"Hola Terrava, vi la lista mayorista y quiero hacer una consulta.","whatsappDisplay":"+54 9 221 507-9937","mail":"hola@terrava.ar","mailAsunto":"Consulta mayorista Terrava"},"cafes":[{"numero":"01","nombre":"NÉCTAR PARAÍSO","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.095 msnm","proceso":"Natural","notas":["Azúcar moreno","Caramelo","Miel"],"perfil":"Dulce y redondo. Acidez cítrica media, cuerpo cremoso y final largo.","precio125":6000,"precio250":11500,"pvpSugerido250":15900,"precioKg":45000,"pvpSugerido1kg":58000,"color":"c1","disponible":true},{"numero":"02","nombre":"BOURBON AMARELO","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.020 msnm","proceso":"Natural","notas":["Vino","Caramelo","Chocolate","Golosina"],"perfil":"Intenso y expresivo. Acidez tartárica, cuerpo cremoso y postgusto largo.","precio125":6800,"precio250":13500,"pvpSugerido250":19500,"precioKg":49000,"pvpSugerido1kg":66000,"color":"c2","disponible":true},{"numero":"03","nombre":"MINEIRA","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.020 msnm","proceso":"Natural · Orgánico","notas":["Chocolate con leche","Caramelo","Avellana","Limón","Miel"],"perfil":"Complejo y elegante. Acidez cítrica, cuerpo cremoso y perfil dulce.","precio125":6800,"precio250":13500,"pvpSugerido250":19500,"precioKg":49000,"pvpSugerido1kg":66000,"color":"c3","disponible":true},{"numero":"04","nombre":"SUPREMO CASTILLO","origen":"Colombia","region":"Huila","altura":"1.845 msnm","proceso":"Lavado","notas":["Chocolate","Caramelo","Fruta roja"],"perfil":"Cítrico y equilibrado. Acidez cítrica, cuerpo cremoso y final prolongado.","precio125":7600,"precio250":15000,"pvpSugerido250":21500,"precioKg":52000,"pvpSugerido1kg":72000,"color":"c4","disponible":true},{"numero":"05","nombre":"COLOMBIA CATURRA","origen":"Colombia","region":"Inzá, Cauca","altura":"1.800 msnm","proceso":"Lavado","notas":["Frutas amarillas","Chocolate","Miel","Almendra tostada"],"perfil":"Limpio y aromático. Acidez cítrica, cuerpo sedoso y taza clara.","precio125":8200,"precio250":16000,"pvpSugerido250":22900,"precioKg":54000,"pvpSugerido1kg":76000,"color":"c5","disponible":true}]};
 
   function fmt(n) {
     return '$' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -491,16 +515,18 @@
         +   '<p class="cafe-perfil">' + c.perfil + '</p>'
         +   '<div class="cafe-prices">'
         +     '<div class="price-col">'
-        +       '<div class="price-label">250&nbsp;g<br>reventa</div>'
-        +       '<div class="price-num">' + fmt(c.precio250) + '</div>'
+        +       '<div class="price-label">125&nbsp;g<br>reventa</div>'
+        +       '<div class="price-num">' + fmt(c.precio125) + '</div>'
         +     '</div>'
         +     '<div class="price-col">'
-        +       '<div class="price-label">PVP sugerido<br>250&nbsp;g</div>'
-        +       '<div class="price-num">' + fmt(c.pvpSugerido250) + '</div>'
+        +       '<div class="price-label">250&nbsp;g<br>reventa</div>'
+        +       '<div class="price-num">' + fmt(c.precio250) + '</div>'
+        +       '<div class="price-pvp">PVP sugerido: ' + fmt(c.pvpSugerido250) + '</div>'
         +     '</div>'
         +     '<div class="price-col price-kg">'
         +       '<div class="price-label">Por&nbsp;kg</div>'
         +       '<div class="price-num">' + fmt(c.precioKg) + '</div>'
+        +       '<div class="price-pvp">PVP sugerido: ' + fmt(c.pvpSugerido1kg) + '</div>'
         +     '</div>'
         +   '</div>'
         + '</div>'
