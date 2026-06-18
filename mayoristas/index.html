@@ -183,12 +183,13 @@
     .cafe-name {
       font-family: 'Big Shoulders Display', sans-serif;
       font-weight: 900;
-      font-size: clamp(36px, 10vw, 54px);
+      font-size: clamp(34px, 9.5vw, 52px);
       line-height: .9;
       color: #fff;
       text-transform: uppercase;
       letter-spacing: -.01em;
       margin-bottom: 8px;
+      overflow-wrap: break-word;
     }
     .cafe-origin-row {
       display: flex;
@@ -212,8 +213,9 @@
     }
     .cafe-meta-row {
       display: flex;
-      gap: 20px;
+      gap: 24px;
       margin-bottom: 11px;
+      flex-wrap: wrap;
     }
     .cafe-meta { flex-shrink: 0; }
     .meta-label {
@@ -282,7 +284,6 @@
       letter-spacing: .1em;
       text-transform: uppercase;
       color: rgba(0,0,0,.45);
-      /* altura fija: todos los labels tienen 1 línea, pero fijamos para garantizar alineación */
       height: 22px;
       display: flex;
       align-items: center;
@@ -293,7 +294,6 @@
       letter-spacing: .1em;
       text-transform: uppercase;
       color: rgba(0,0,0,.28);
-      /* altura fija para que el precio quede siempre a la misma altura */
       height: 18px;
       display: flex;
       align-items: center;
@@ -519,99 +519,136 @@
      Los datos inline se usan solo si el JSON no carga (ej. entorno local).
      En producción el fetch siempre prevalece.
   ─────────────────────────────────────────────────────────────────────── */
-  var FALLBACK = {"vigencia":"Junio 2026","moneda":"ARS","config":{"whatsapp":"5492215079937","whatsappMensaje":"Hola Terrava, vi la lista mayorista y quiero hacer una consulta.","whatsappDisplay":"+54 9 221 507-9937","mail":"hola@terrava.ar","mailAsunto":"Consulta mayorista Terrava"},"cafes":[{"numero":"01","nombre":"NÉCTAR PARAÍSO","origen":"Brasil","region":"Cerrado Mineiro","variedad":"Paraíso GC","altura":"1.095 msnm","proceso":"Natural","notas":["Azúcar moreno","Caramelo","Miel"],"perfil":"Un café dulce, redondo y fácil de tomar. Tiene notas de azúcar moreno, caramelo y miel, con cuerpo cremoso y una acidez cítrica media que lo vuelve equilibrado y amable.","precio125":6000,"pvpSugerido125":8500,"precio250":11500,"pvpSugerido250":15900,"precioKg":45000,"pvpSugerido1kg":58000,"color":"c1","disponible":true},{"numero":"02","nombre":"BOURBON AMARELO","origen":"Brasil","region":"Cerrado Mineiro","variedad":"Bourbon Amarelo","altura":"1.020 msnm","proceso":"Natural","notas":["Caramelo","Chocolate","Vino"],"perfil":"Un café expresivo y con mucha presencia en taza. Combina notas de caramelo, chocolate y vino, con cuerpo cremoso y una acidez tartárica que le da carácter sin perder dulzura.","precio125":6800,"pvpSugerido125":9500,"precio250":13500,"pvpSugerido250":19500,"precioKg":49000,"pvpSugerido1kg":66000,"color":"c2","disponible":true},{"numero":"03","nombre":"MINEIRA","origen":"Brasil","region":"Cerrado Mineiro","variedad":"Mineira","altura":"1.020 msnm","proceso":"Natural","notas":["Chocolate con leche","Caramelo","Avellana","Limón","Miel"],"perfil":"Un café de perfil elegante y dulce, con notas de chocolate con leche, caramelo, avellana, limón y miel. Tiene cuerpo cremoso y una acidez cítrica que aporta brillo y equilibrio.","precio125":6800,"pvpSugerido125":9500,"precio250":13500,"pvpSugerido250":19500,"precioKg":49000,"pvpSugerido1kg":66000,"color":"c3","disponible":true},{"numero":"04","nombre":"SUPREMO CASTILLO","origen":"Colombia","region":"Huila","variedad":"Castillo","altura":"1.845 msnm","proceso":"Lavado","notas":["Chocolate","Caramelo","Fruta roja"],"perfil":"Un café colombiano balanceado y confortable, con notas de chocolate, caramelo y fruta roja. Tiene cuerpo cremoso, acidez cítrica y un final prolongado, ideal para quienes buscan una taza clásica pero con identidad.","precio125":7600,"pvpSugerido125":10500,"precio250":15000,"pvpSugerido250":21500,"precioKg":52000,"pvpSugerido1kg":72000,"color":"c4","disponible":true},{"numero":"05","nombre":"COLOMBIA CATURRA","origen":"Colombia","region":"Cauca / Inzá","variedad":"Colombia - Caturra","altura":"1.800 msnm","proceso":"Lavado","notas":["Miel","Chocolate","Frutas amarillas","Chocolate de leche","Almendra tostada"],"perfil":"Un café colombiano más brillante y complejo, con notas de miel, chocolate, frutas amarillas, chocolate de leche y almendra tostada. Tiene cuerpo sedoso y acidez cítrica, con una taza limpia y expresiva.","precio125":8200,"pvpSugerido125":11500,"precio250":16000,"pvpSugerido250":22900,"precioKg":54000,"pvpSugerido1kg":76000,"color":"c5","disponible":true}]};
+  var FALLBACK = {"vigencia":"Junio 2026","moneda":"ARS","config":{"whatsapp":"5492215079937","whatsappMensaje":"Hola Terrava, vi la lista mayorista y quiero hacer una consulta.","whatsappDisplay":"+54 9 221 507-9937","mail":"hola@terrava.ar","mailAsunto":"Consulta mayorista Terrava"},"cafes":[{"numero":"01","nombre":"PARAÍSO BRASIL","origen":"Brasil","region":"Cerrado Mineiro","variedad":"Paraíso GC","altura":"1.095 msnm","proceso":"Natural","notas":["Azúcar moreno","Caramelo","Miel"],"perfil":"Un café dulce, redondo y fácil de tomar. Tiene notas de azúcar moreno, caramelo y miel, con cuerpo cremoso y una acidez cítrica media que lo vuelve equilibrado y amable.","precio125":6000,"pvpSugerido125":8500,"precio250":11500,"pvpSugerido250":15900,"precioKg":45000,"pvpSugerido1kg":58000,"color":"c1","disponible":true},{"numero":"02","nombre":"BOURBON AMARELO BRASIL","origen":"Brasil","region":"Cerrado Mineiro","variedad":"Bourbon Amarelo","altura":"1.020 msnm","proceso":"Natural","notas":["Caramelo","Chocolate","Vino"],"perfil":"Un café expresivo y con mucha presencia en taza. Combina notas de caramelo, chocolate y vino, con cuerpo cremoso y una acidez tartárica que le da carácter sin perder dulzura.","precio125":6800,"pvpSugerido125":9500,"precio250":13500,"pvpSugerido250":19500,"precioKg":49000,"pvpSugerido1kg":66000,"color":"c2","disponible":true},{"numero":"03","nombre":"MINEIRA BRASIL","origen":"Brasil","region":"Cerrado Mineiro","variedad":"Mineira","altura":"1.020 msnm","proceso":"Natural","notas":["Chocolate con leche","Caramelo","Avellana","Limón","Miel"],"perfil":"Un café de perfil elegante y dulce, con notas de chocolate con leche, caramelo, avellana, limón y miel. Tiene cuerpo cremoso y una acidez cítrica que aporta brillo y equilibrio.","precio125":6800,"pvpSugerido125":9500,"precio250":13500,"pvpSugerido250":19500,"precioKg":49000,"pvpSugerido1kg":66000,"color":"c3","disponible":true},{"numero":"04","nombre":"SUPREMO CASTILLO COLOMBIA","origen":"Colombia","region":"Huila","variedad":"Castillo","altura":"1.845 msnm","proceso":"Lavado","notas":["Chocolate","Caramelo","Fruta roja"],"perfil":"Un café colombiano balanceado y confortable, con notas de chocolate, caramelo y fruta roja. Tiene cuerpo cremoso, acidez cítrica y un final prolongado, ideal para quienes buscan una taza clásica pero con identidad.","precio125":7600,"pvpSugerido125":10500,"precio250":15000,"pvpSugerido250":21500,"precioKg":52000,"pvpSugerido1kg":72000,"color":"c4","disponible":true},{"numero":"05","nombre":"COLOMBIA CATURRA","origen":"Colombia","region":"Cauca / Inzá","variedad":"Colombia - Caturra","altura":"1.800 msnm","proceso":"Lavado","notas":["Miel","Chocolate","Frutas amarillas","Chocolate de leche","Almendra tostada"],"perfil":"Un café colombiano más brillante y complejo, con notas de miel, chocolate, frutas amarillas, chocolate de leche y almendra tostada. Tiene cuerpo sedoso y acidez cítrica, con una taza limpia y expresiva.","precio125":8200,"pvpSugerido125":11500,"precio250":16000,"pvpSugerido250":22900,"precioKg":54000,"pvpSugerido1kg":76000,"color":"c5","disponible":true}]};
 
+  /* SVG de WhatsApp, definido una vez */
+  var SVG_WSP = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.13.332.202.043.72.043.419-.101.824z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.852L.054 23.927l6.227-1.637A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.671-.507-5.194-1.394l-.373-.22-3.864 1.015 1.033-3.77-.242-.386A9.944 9.944 0 0 1 2 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>';
+
+  /* fmt: formatea número como precio. Devuelve '—' si el valor no es un número válido */
   function fmt(n) {
-    return '$' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    var num = Number(n);
+    if (isNaN(num) || n == null) return '—';
+    return '$' + String(num).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  }
+
+  /* safe: convierte cualquier valor a string, devolviendo '' si es null/undefined */
+  function safe(v) {
+    return (v != null) ? String(v) : '';
+  }
+
+  /* originLine: arma la línea "Origen · Región · Altura" omitiendo campos vacíos */
+  function originLine(c) {
+    var parts = [c.origen, c.region, c.altura].filter(function(x) { return x; });
+    return parts.join(' · ');
+  }
+
+  /* buildMeta: arma un bloque de dato (label + valor). Devuelve '' si val está vacío */
+  function buildMeta(label, val) {
+    if (!val) return '';
+    return '<div class="cafe-meta">'
+      + '<div class="meta-label">' + label + '</div>'
+      + '<div class="meta-val">' + safe(val) + '</div>'
+      + '</div>';
+  }
+
+  /* buildPriceCol: arma una columna de precio */
+  function buildPriceCol(extraClass, label, mayorista, pvp) {
+    var cls = 'price-col' + (extraClass ? ' ' + extraClass : '');
+    return '<div class="' + cls + '">'
+      + '<div class="price-label">' + label + '</div>'
+      + '<div class="price-mayorista">Precio mayorista</div>'
+      + '<div class="price-num">' + mayorista + '</div>'
+      + '<div class="price-pvp">PVP sugerido: ' + pvp + '</div>'
+      + '</div>';
   }
 
   function render(data) {
-    var v = data.vigencia || 'Junio 2026';
-    var cfg = data.config;
+    var v = safe(data.vigencia) || 'Junio 2026';
+    var cfg = data.config || {};
 
+    /* header sub */
     var hSub = document.getElementById('js-header-sub');
     if (hSub) hSub.textContent = 'Precios mayoristas · ' + v;
 
+    /* info bar */
     var bar = document.getElementById('js-info-bar');
     if (bar) {
-      bar.innerHTML = [v, 'Precios en ARS', 'Grano o molido']
-        .map(function(t){ return '<div class="info-item">' + t + '</div>'; }).join('');
+      var barItems = [v, 'Precios en ARS', 'Grano o molido'];
+      bar.innerHTML = barItems.map(function(t) {
+        return '<div class="info-item">' + t + '</div>';
+      }).join('');
     }
 
-    var visible = data.cafes.filter(function(c){ return c.disponible !== false; });
-    document.getElementById('js-cafes').innerHTML = visible.map(function(c) {
-      var nm = c.nombre.replace(' ', '<br>');
-      return '<article class="cafe">'
-        + '<div class="cafe-top ' + c.color + '">'
-        +   '<div class="cafe-top-row">'
-        +     '<span class="cafe-num">' + c.numero + '</span>'
-        +   '</div>'
-        +   '<div class="cafe-name">' + nm + '</div>'
-        +   '<div class="cafe-origin-row">'
-        +     '<span class="cafe-origin">' + c.origen + '&nbsp;&middot;&nbsp;' + c.region + '&nbsp;&middot;&nbsp;' + c.altura + '</span>'
-        +   '</div>'
-        + '</div>'
-        + '<div class="cafe-body">'
-        +   '<div class="cafe-meta-row">'
-        +     '<div class="cafe-meta">'
-        +       '<div class="meta-label">Proceso</div>'
-        +       '<div class="meta-val">' + c.proceso + '</div>'
-        +     '</div>'
-        +     (c.variedad ? '<div class="cafe-meta">'
-        +       + '<div class="meta-label">Variedad</div>'
-        +       + '<div class="meta-val">' + c.variedad + '</div>'
-        +     + '</div>' : '')
-        +   '</div>'
-        +   '<div class="notes">'
-        +     c.notas.map(function(n){ return '<span class="chip ' + c.color + '">' + n + '</span>'; }).join('')
-        +   '</div>'
-        +   '<p class="cafe-perfil">' + c.perfil + '</p>'
-        +   '<div class="cafe-prices">'
-        +     '<div class="price-col">'
-        +       '<div class="price-label">125&nbsp;g</div>'
-        +       '<div class="price-mayorista">Precio mayorista</div>'
-        +       '<div class="price-num">' + fmt(c.precio125) + '</div>'
-        +       '<div class="price-pvp">PVP sugerido: ' + fmt(c.pvpSugerido125) + '</div>'
-        +     '</div>'
-        +     '<div class="price-col">'
-        +       '<div class="price-label">250&nbsp;g</div>'
-        +       '<div class="price-mayorista">Precio mayorista</div>'
-        +       '<div class="price-num">' + fmt(c.precio250) + '</div>'
-        +       '<div class="price-pvp">PVP sugerido: ' + fmt(c.pvpSugerido250) + '</div>'
-        +     '</div>'
-        +     '<div class="price-col price-kg">'
-        +       '<div class="price-label">1&nbsp;kg</div>'
-        +       '<div class="price-mayorista">Precio mayorista</div>'
-        +       '<div class="price-num">' + fmt(c.precioKg) + '</div>'
-        +       '<div class="price-pvp">PVP sugerido: ' + fmt(c.pvpSugerido1kg) + '</div>'
-        +     '</div>'
-        +   '</div>'
-        + '</div>'
-        + '</article>';
-    }).join('');
+    /* cards */
+    var visible = (data.cafes || []).filter(function(c) { return c.disponible !== false; });
+    var cardsHtml = '';
 
-    var wspUrl = 'https://wa.me/' + cfg.whatsapp + '?text=' + encodeURIComponent(cfg.whatsappMensaje);
+    visible.forEach(function(c) {
+      /* nombre: break solo en el primer espacio */
+      var nm = safe(c.nombre).replace(' ', '<br>');
+
+      /* fila de datos técnicos */
+      var metaHtml = '<div class="cafe-meta-row">'
+        + buildMeta('Proceso', c.proceso)
+        + buildMeta('Variedad', c.variedad)
+        + '</div>';
+
+      /* chips de notas */
+      var notesHtml = '<div class="notes">';
+      (c.notas || []).forEach(function(nota) {
+        notesHtml += '<span class="chip ' + safe(c.color) + '">' + safe(nota) + '</span>';
+      });
+      notesHtml += '</div>';
+
+      /* columnas de precio */
+      var pricesHtml = '<div class="cafe-prices">'
+        + buildPriceCol('', '125&nbsp;g', fmt(c.precio125), fmt(c.pvpSugerido125))
+        + buildPriceCol('', '250&nbsp;g', fmt(c.precio250), fmt(c.pvpSugerido250))
+        + buildPriceCol('price-kg', '1&nbsp;kg', fmt(c.precioKg), fmt(c.pvpSugerido1kg))
+        + '</div>';
+
+      cardsHtml += '<article class="cafe">'
+
+        /* header coloreado */
+        + '<div class="cafe-top ' + safe(c.color) + '">'
+        +   '<div class="cafe-top-row"><span class="cafe-num">' + safe(c.numero) + '</span></div>'
+        +   '<div class="cafe-name">' + nm + '</div>'
+        +   '<div class="cafe-origin-row"><span class="cafe-origin">' + originLine(c) + '</span></div>'
+        + '</div>'
+
+        /* cuerpo blanco */
+        + '<div class="cafe-body">'
+        +   metaHtml
+        +   notesHtml
+        +   '<p class="cafe-perfil">' + safe(c.perfil) + '</p>'
+        +   pricesHtml
+        + '</div>'
+
+        + '</article>';
+    });
+
+    document.getElementById('js-cafes').innerHTML = cardsHtml || '<p style="opacity:.4;padding:24px 0;">No hay cafés disponibles.</p>';
+
+    /* CTA buttons */
+    var wspUrl = 'https://wa.me/' + safe(cfg.whatsapp) + '?text=' + encodeURIComponent(safe(cfg.whatsappMensaje));
     document.getElementById('js-cta-btns').innerHTML =
       '<a href="' + wspUrl + '" class="cta-btn btn-primary" target="_blank" rel="noopener">'
-      + '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.13.332.202.043.72.043.419-.101.824z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.852L.054 23.927l6.227-1.637A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.671-.507-5.194-1.394l-.373-.22-3.864 1.015 1.033-3.77-.242-.386A9.944 9.944 0 0 1 2 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>'
-      + 'Pedir muestras'
-      + '</a>'
+      + SVG_WSP + 'Pedir muestras</a>'
       + '<a href="' + wspUrl + '" class="cta-btn btn-wsp" target="_blank" rel="noopener">'
-      + '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564c.173.087.289.13.332.202.043.72.043.419-.101.824z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.533 5.852L.054 23.927l6.227-1.637A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.9 0-3.671-.507-5.194-1.394l-.373-.22-3.864 1.015 1.033-3.77-.242-.386A9.944 9.944 0 0 1 2 12C2 6.486 6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/></svg>'
-      + 'Hacer pedido por WhatsApp'
-      + '</a>';
+      + SVG_WSP + 'Hacer pedido por WhatsApp</a>';
 
+    /* footer */
     document.getElementById('js-footer-info').innerHTML =
       '<span class="footer-info-item">Entrega a coordinar</span>'
-      + '<span class="footer-info-item">' + cfg.mail + '</span>'
-      + '<span class="footer-info-item">' + cfg.whatsappDisplay + '</span>'
+      + '<span class="footer-info-item">' + safe(cfg.mail) + '</span>'
+      + '<span class="footer-info-item">' + safe(cfg.whatsappDisplay) + '</span>'
       + '<span class="footer-info-item">' + v + '</span>';
   }
 
   fetch('/data/precios-mayoristas.json')
-    .then(function(r){ if (!r.ok) throw 0; return r.json(); })
+    .then(function(r) { if (!r.ok) throw 0; return r.json(); })
     .then(render)
-    .catch(function(){ render(FALLBACK); });
+    .catch(function() { render(FALLBACK); });
 </script>
 </body>
 </html>

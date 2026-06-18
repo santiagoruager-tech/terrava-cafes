@@ -11,7 +11,7 @@
   "cafes": [
     {
       "numero": "01",
-      "nombre": "NÉCTAR PARAÍSO",
+      "nombre": "PARAÍSO BRASIL",
       "origen": "Brasil",
       "region": "Cerrado Mineiro",
       "variedad": "Paraíso GC",
@@ -30,7 +30,7 @@
     },
     {
       "numero": "02",
-      "nombre": "BOURBON AMARELO",
+      "nombre": "BOURBON AMARELO BRASIL",
       "origen": "Brasil",
       "region": "Cerrado Mineiro",
       "variedad": "Bourbon Amarelo",
@@ -49,7 +49,7 @@
     },
     {
       "numero": "03",
-      "nombre": "MINEIRA",
+      "nombre": "MINEIRA BRASIL",
       "origen": "Brasil",
       "region": "Cerrado Mineiro",
       "variedad": "Mineira",
@@ -68,7 +68,7 @@
     },
     {
       "numero": "04",
-      "nombre": "SUPREMO CASTILLO",
+      "nombre": "SUPREMO CASTILLO COLOMBIA",
       "origen": "Colombia",
       "region": "Huila",
       "variedad": "Castillo",
