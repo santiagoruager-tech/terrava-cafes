@@ -86,12 +86,34 @@
       max-width: 420px;
     }
     .hero-meta {
-      margin-top: 10px;
+      margin-top: 8px;
       font-size: 9px;
-      line-height: 1.6;
-      color: rgba(0,0,0,.38);
-      letter-spacing: .06em;
+      letter-spacing: .08em;
+      color: rgba(0,0,0,.36);
+      text-transform: uppercase;
     }
+    .formats-line {
+      margin-top: 20px;
+      font-size: 10px;
+      font-style: italic;
+      color: rgba(0,0,0,.42);
+      letter-spacing: .015em;
+    }
+
+    /* ── BRAND STORY ────────────────────────────── */
+    .brand-story {
+      margin-top: 26px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(0,0,0,.1);
+    }
+    .brand-story p {
+      font-size: 11px;
+      line-height: 1.8;
+      color: rgba(0,0,0,.52);
+      letter-spacing: .015em;
+      margin-bottom: 14px;
+    }
+    .brand-story p:last-child { margin-bottom: 0; }
 
     /* ── INFO BAR ───────────────────────────────── */
     .info-bar {
@@ -118,30 +140,6 @@
       text-overflow: ellipsis;
     }
     .info-item:last-child { border-right: none; }
-
-    /* ── BRAND STORY ────────────────────────────── */
-    .brand-story {
-      margin-top: 28px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(0,0,0,.1);
-    }
-    .brand-story p {
-      font-size: 11px;
-      line-height: 1.8;
-      color: rgba(0,0,0,.52);
-      letter-spacing: .015em;
-      margin-bottom: 14px;
-    }
-    .brand-story p:last-child { margin-bottom: 0; }
-    .formats-text {
-      font-size: 10.5px;
-      line-height: 1.75;
-      color: rgba(0,0,0,.44);
-      letter-spacing: .015em;
-      margin-top: 20px;
-      font-style: italic;
-    }
-    .formats-text strong { font-style: normal; }
 
     /* ── CARDS ──────────────────────────────────── */
     .cafes {
@@ -212,7 +210,12 @@
       border-radius: 0 0 8px 8px;
       padding: 14px 20px 0;
     }
-    .cafe-meta { margin-bottom: 11px; }
+    .cafe-meta-row {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 11px;
+    }
+    .cafe-meta { flex-shrink: 0; }
     .meta-label {
       font-size: 7.5px;
       letter-spacing: .16em;
@@ -279,8 +282,7 @@
       letter-spacing: .1em;
       text-transform: uppercase;
       color: rgba(0,0,0,.45);
-      line-height: 1;
-      /* fixed height so price numbers align across all 3 columns */
+      /* altura fija: todos los labels tienen 1 línea, pero fijamos para garantizar alineación */
       height: 22px;
       display: flex;
       align-items: center;
@@ -291,8 +293,12 @@
       letter-spacing: .1em;
       text-transform: uppercase;
       color: rgba(0,0,0,.28);
-      margin-top: 8px;
-      margin-bottom: 4px;
+      /* altura fija para que el precio quede siempre a la misma altura */
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 6px;
     }
     .price-num {
       font-family: 'Big Shoulders Display', sans-serif;
@@ -303,15 +309,16 @@
     }
     .price-pvp {
       font-size: 7px;
-      letter-spacing: .08em;
+      letter-spacing: .07em;
       text-transform: uppercase;
       color: rgba(0,0,0,.28);
       margin-top: 6px;
       line-height: 1.4;
+      text-align: center;
     }
 
     /* kg destacado */
-    .price-col.price-kg .price-label  { color: rgba(233,78,36,.6); }
+    .price-col.price-kg .price-label     { color: rgba(233,78,36,.6); }
     .price-col.price-kg .price-mayorista { color: rgba(233,78,36,.45); }
     .price-col.price-kg .price-num {
       font-size: clamp(20px, 6vw, 30px);
@@ -322,27 +329,15 @@
     /* ── DISCLAIMER ─────────────────────────────── */
     .disclaimer-wrap {
       border-top: 1px solid rgba(0,0,0,.08);
-      padding-top: 22px;
+      padding-top: 20px;
       margin-top: 36px;
       max-width: 560px;
     }
-    .disclaimer-formats p {
+    .disclaimer-wrap p {
       font-size: 10px;
-      line-height: 1.7;
-      color: rgba(0,0,0,.42);
+      line-height: 1.75;
+      color: rgba(0,0,0,.36);
       letter-spacing: .015em;
-    }
-    .disclaimer-formats strong {
-      font-weight: 700;
-      color: rgba(0,0,0,.6);
-    }
-    .disclaimer-pvp {
-      font-size: 9.5px;
-      line-height: 1.65;
-      color: rgba(0,0,0,.30);
-      letter-spacing: .015em;
-      font-style: italic;
-      margin-top: 12px;
     }
 
     /* ── CTA ────────────────────────────────────── */
@@ -454,6 +449,7 @@
       .info-item { font-size: 6px; letter-spacing: .08em; }
       .price-col { padding: 10px 3px 14px; }
       .price-label { height: auto; min-height: 22px; }
+      .price-mayorista { height: auto; min-height: 18px; }
     }
   </style>
 </head>
@@ -470,20 +466,21 @@
 
   <section class="hero">
     <h1 class="hero-title">NUESTROS<br>CAFÉS<br>MAYORISTAS</h1>
-    <p class="hero-sub">Café de especialidad para barra, tolva y reventa.</p>
-    <p class="hero-meta">1&nbsp;kg para barra/tolva · 250&nbsp;g para reventa · 125&nbsp;g para degustación</p>
+    <p class="hero-sub">Café de especialidad para tu local, tu barra o tu góndola.</p>
+    <p class="hero-meta">1&nbsp;kg · 250&nbsp;g · 125&nbsp;g</p>
   </section>
+
+  <p class="formats-line">Formatos disponibles para servicio, reventa y degustación.</p>
 
   <section class="brand-story">
     <p>Terrava nace en Argentina a partir de una historia familiar vinculada al café en Venezuela. La familia de uno de sus fundadores tiene fincas cafeteras y creció entre la tierra, la cosecha y el trabajo de finca.</p>
     <p>Desde esa experiencia elegimos cafés latinoamericanos con criterio, respeto por el origen y perfiles que realmente valgan la pena.</p>
   </section>
-  <p class="formats-text">Trabajamos tres formatos mayoristas: <strong>1&nbsp;kg</strong> para barra, tolva o volumen; <strong>250&nbsp;g</strong> para reventa en góndola o mostrador; y <strong>125&nbsp;g</strong> para degustación, regalos o primeras pruebas.</p>
 
   <div class="info-bar" id="js-info-bar">
     <div class="info-item">Junio 2026</div>
     <div class="info-item">Precios en ARS</div>
-    <div class="info-item">1 kg · 250 g · 125 g</div>
+    <div class="info-item">Grano o molido</div>
   </div>
 
   <div class="cafes" id="js-cafes">
@@ -493,12 +490,7 @@
 
 <div class="wrap">
   <div class="disclaimer-wrap">
-    <div class="disclaimer-formats">
-      <p><strong>125&nbsp;g</strong> — Degustación, regalos o reventa puntual.</p>
-      <p><strong>250&nbsp;g</strong> — Reventa en góndola o mostrador.</p>
-      <p><strong>1&nbsp;kg</strong> — Barra, tolva o volumen.</p>
-    </div>
-    <p class="disclaimer-pvp">Los PVP sugeridos son referencias para cuidar el posicionamiento de marca y ordenar la reventa.</p>
+    <p>Los PVP sugeridos son referencias para ordenar la reventa y cuidar el posicionamiento de marca. Los formatos de 125&nbsp;g, 250&nbsp;g y 1&nbsp;kg se pueden combinar según la necesidad de cada local.</p>
   </div>
 </div>
 
@@ -506,7 +498,7 @@
   <div class="cta-inner">
     <div class="cta-label">Hacé tu pedido</div>
     <h2 class="cta-title">SI VAS A TOMAR CAFÉ,<br>QUE SEA TERRAVA.</h2>
-    <p class="cta-text">Si querés probar Terrava en tu local, podemos acercarte muestras y ayudarte a elegir qué perfil funciona mejor para tu barra o para reventa.</p>
+    <p class="cta-text">Si querés probar Terrava en tu local, podemos acercarte muestras y ayudarte a elegir qué perfil funciona mejor para tu propuesta.</p>
     <div class="cta-buttons" id="js-cta-btns"></div>
   </div>
 </section>
@@ -527,7 +519,7 @@
      Los datos inline se usan solo si el JSON no carga (ej. entorno local).
      En producción el fetch siempre prevalece.
   ─────────────────────────────────────────────────────────────────────── */
-  var FALLBACK = {"vigencia":"Junio 2026","moneda":"ARS","config":{"whatsapp":"5492215079937","whatsappMensaje":"Hola Terrava, vi la lista mayorista y quiero hacer una consulta.","whatsappDisplay":"+54 9 221 507-9937","mail":"hola@terrava.ar","mailAsunto":"Consulta mayorista Terrava"},"cafes":[{"numero":"01","nombre":"NÉCTAR PARAÍSO","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.095 msnm","proceso":"Natural","notas":["Azúcar moreno","Caramelo","Miel"],"perfil":"Dulce y redondo. Acidez cítrica media, cuerpo cremoso y final largo.","precio125":6000,"pvpSugerido125":8500,"precio250":11500,"pvpSugerido250":15900,"precioKg":45000,"pvpSugerido1kg":58000,"color":"c1","disponible":true},{"numero":"02","nombre":"BOURBON AMARELO","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.020 msnm","proceso":"Natural","notas":["Vino","Caramelo","Chocolate","Golosina"],"perfil":"Intenso y expresivo. Acidez tartárica, cuerpo cremoso y postgusto largo.","precio125":6800,"pvpSugerido125":9500,"precio250":13500,"pvpSugerido250":19500,"precioKg":49000,"pvpSugerido1kg":66000,"color":"c2","disponible":true},{"numero":"03","nombre":"MINEIRA","origen":"Brasil","region":"Cerrado Mineiro","altura":"1.020 msnm","proceso":"Natural · Orgánico","notas":["Chocolate con leche","Caramelo","Avellana","Limón","Miel"],"perfil":"Complejo y elegante. Acidez cítrica, cuerpo cremoso y perfil dulce.","precio125":6800,"pvpSugerido125":9500,"precio250":13500,"pvpSugerido250":19500,"precioKg":49000,"pvpSugerido1kg":66000,"color":"c3","disponible":true},{"numero":"04","nombre":"SUPREMO CASTILLO","origen":"Colombia","region":"Huila","altura":"1.845 msnm","proceso":"Lavado","notas":["Chocolate","Caramelo","Fruta roja"],"perfil":"Cítrico y equilibrado. Acidez cítrica, cuerpo cremoso y final prolongado.","precio125":7600,"pvpSugerido125":10500,"precio250":15000,"pvpSugerido250":21500,"precioKg":52000,"pvpSugerido1kg":72000,"color":"c4","disponible":true},{"numero":"05","nombre":"COLOMBIA CATURRA","origen":"Colombia","region":"Inzá, Cauca","altura":"1.800 msnm","proceso":"Lavado","notas":["Frutas amarillas","Chocolate","Miel","Almendra tostada"],"perfil":"Limpio y aromático. Acidez cítrica, cuerpo sedoso y taza clara.","precio125":8200,"pvpSugerido125":11500,"precio250":16000,"pvpSugerido250":22900,"precioKg":54000,"pvpSugerido1kg":76000,"color":"c5","disponible":true}]};
+  var FALLBACK = {"vigencia":"Junio 2026","moneda":"ARS","config":{"whatsapp":"5492215079937","whatsappMensaje":"Hola Terrava, vi la lista mayorista y quiero hacer una consulta.","whatsappDisplay":"+54 9 221 507-9937","mail":"hola@terrava.ar","mailAsunto":"Consulta mayorista Terrava"},"cafes":[{"numero":"01","nombre":"NÉCTAR PARAÍSO","origen":"Brasil","region":"Cerrado Mineiro","variedad":"Paraíso GC","altura":"1.095 msnm","proceso":"Natural","notas":["Azúcar moreno","Caramelo","Miel"],"perfil":"Un café dulce, redondo y fácil de tomar. Tiene notas de azúcar moreno, caramelo y miel, con cuerpo cremoso y una acidez cítrica media que lo vuelve equilibrado y amable.","precio125":6000,"pvpSugerido125":8500,"precio250":11500,"pvpSugerido250":15900,"precioKg":45000,"pvpSugerido1kg":58000,"color":"c1","disponible":true},{"numero":"02","nombre":"BOURBON AMARELO","origen":"Brasil","region":"Cerrado Mineiro","variedad":"Bourbon Amarelo","altura":"1.020 msnm","proceso":"Natural","notas":["Caramelo","Chocolate","Vino"],"perfil":"Un café expresivo y con mucha presencia en taza. Combina notas de caramelo, chocolate y vino, con cuerpo cremoso y una acidez tartárica que le da carácter sin perder dulzura.","precio125":6800,"pvpSugerido125":9500,"precio250":13500,"pvpSugerido250":19500,"precioKg":49000,"pvpSugerido1kg":66000,"color":"c2","disponible":true},{"numero":"03","nombre":"MINEIRA","origen":"Brasil","region":"Cerrado Mineiro","variedad":"Mineira","altura":"1.020 msnm","proceso":"Natural","notas":["Chocolate con leche","Caramelo","Avellana","Limón","Miel"],"perfil":"Un café de perfil elegante y dulce, con notas de chocolate con leche, caramelo, avellana, limón y miel. Tiene cuerpo cremoso y una acidez cítrica que aporta brillo y equilibrio.","precio125":6800,"pvpSugerido125":9500,"precio250":13500,"pvpSugerido250":19500,"precioKg":49000,"pvpSugerido1kg":66000,"color":"c3","disponible":true},{"numero":"04","nombre":"SUPREMO CASTILLO","origen":"Colombia","region":"Huila","variedad":"Castillo","altura":"1.845 msnm","proceso":"Lavado","notas":["Chocolate","Caramelo","Fruta roja"],"perfil":"Un café colombiano balanceado y confortable, con notas de chocolate, caramelo y fruta roja. Tiene cuerpo cremoso, acidez cítrica y un final prolongado, ideal para quienes buscan una taza clásica pero con identidad.","precio125":7600,"pvpSugerido125":10500,"precio250":15000,"pvpSugerido250":21500,"precioKg":52000,"pvpSugerido1kg":72000,"color":"c4","disponible":true},{"numero":"05","nombre":"COLOMBIA CATURRA","origen":"Colombia","region":"Cauca / Inzá","variedad":"Colombia - Caturra","altura":"1.800 msnm","proceso":"Lavado","notas":["Miel","Chocolate","Frutas amarillas","Chocolate de leche","Almendra tostada"],"perfil":"Un café colombiano más brillante y complejo, con notas de miel, chocolate, frutas amarillas, chocolate de leche y almendra tostada. Tiene cuerpo sedoso y acidez cítrica, con una taza limpia y expresiva.","precio125":8200,"pvpSugerido125":11500,"precio250":16000,"pvpSugerido250":22900,"precioKg":54000,"pvpSugerido1kg":76000,"color":"c5","disponible":true}]};
 
   function fmt(n) {
     return '$' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -542,7 +534,7 @@
 
     var bar = document.getElementById('js-info-bar');
     if (bar) {
-      bar.innerHTML = [v, 'Precios en ARS', '1 kg · 250 g · 125 g']
+      bar.innerHTML = [v, 'Precios en ARS', 'Grano o molido']
         .map(function(t){ return '<div class="info-item">' + t + '</div>'; }).join('');
     }
 
@@ -560,9 +552,15 @@
         +   '</div>'
         + '</div>'
         + '<div class="cafe-body">'
-        +   '<div class="cafe-meta">'
-        +     '<div class="meta-label">Proceso</div>'
-        +     '<div class="meta-val">' + c.proceso + '</div>'
+        +   '<div class="cafe-meta-row">'
+        +     '<div class="cafe-meta">'
+        +       '<div class="meta-label">Proceso</div>'
+        +       '<div class="meta-val">' + c.proceso + '</div>'
+        +     '</div>'
+        +     (c.variedad ? '<div class="cafe-meta">'
+        +       + '<div class="meta-label">Variedad</div>'
+        +       + '<div class="meta-val">' + c.variedad + '</div>'
+        +     + '</div>' : '')
         +   '</div>'
         +   '<div class="notes">'
         +     c.notas.map(function(n){ return '<span class="chip ' + c.color + '">' + n + '</span>'; }).join('')
@@ -573,19 +571,19 @@
         +       '<div class="price-label">125&nbsp;g</div>'
         +       '<div class="price-mayorista">Precio mayorista</div>'
         +       '<div class="price-num">' + fmt(c.precio125) + '</div>'
-        +       '<div class="price-pvp">PVP: ' + fmt(c.pvpSugerido125) + '</div>'
+        +       '<div class="price-pvp">PVP sugerido: ' + fmt(c.pvpSugerido125) + '</div>'
         +     '</div>'
         +     '<div class="price-col">'
         +       '<div class="price-label">250&nbsp;g</div>'
         +       '<div class="price-mayorista">Precio mayorista</div>'
         +       '<div class="price-num">' + fmt(c.precio250) + '</div>'
-        +       '<div class="price-pvp">PVP: ' + fmt(c.pvpSugerido250) + '</div>'
+        +       '<div class="price-pvp">PVP sugerido: ' + fmt(c.pvpSugerido250) + '</div>'
         +     '</div>'
         +     '<div class="price-col price-kg">'
         +       '<div class="price-label">1&nbsp;kg</div>'
         +       '<div class="price-mayorista">Precio mayorista</div>'
         +       '<div class="price-num">' + fmt(c.precioKg) + '</div>'
-        +       '<div class="price-pvp">PVP: ' + fmt(c.pvpSugerido1kg) + '</div>'
+        +       '<div class="price-pvp">PVP sugerido: ' + fmt(c.pvpSugerido1kg) + '</div>'
         +     '</div>'
         +   '</div>'
         + '</div>'
