@@ -340,6 +340,44 @@
       letter-spacing: .015em;
     }
 
+    /* ── FORMAS DE PAGO ─────────────────────────── */
+    .pago-section {
+      border-top: 1px solid rgba(0,0,0,.08);
+      padding-top: 20px;
+      margin-top: 28px;
+      max-width: 560px;
+    }
+    .pago-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 14px;
+    }
+    .pago-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .pago-chip {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 99px;
+      border: 1.5px solid rgba(0,0,0,.18);
+      color: rgba(0,0,0,.55);
+    }
+    .pago-note {
+      font-size: 10px;
+      line-height: 1.75;
+      color: rgba(0,0,0,.36);
+      letter-spacing: .015em;
+    }
+
     /* ── CTA ────────────────────────────────────── */
     .cta-section {
       background: var(--orange);
@@ -491,6 +529,16 @@
 <div class="wrap">
   <div class="disclaimer-wrap">
     <p>Los PVP sugeridos son referencias para ordenar la reventa y cuidar el posicionamiento de marca. Los formatos de 125&nbsp;g, 250&nbsp;g y 1&nbsp;kg se pueden combinar según la necesidad de cada local.</p>
+  </div>
+
+  <div class="pago-section">
+    <div class="pago-label">Formas de pago</div>
+    <div class="pago-items">
+      <span class="pago-chip">Transferencia</span>
+      <span class="pago-chip">Efectivo</span>
+      <span class="pago-chip">Cheque</span>
+    </div>
+    <p class="pago-note">El pago con cheque queda sujeto a situación crediticia. Los plazos de pago se convienen según el acuerdo comercial con cada cliente.</p>
   </div>
 </div>
 
