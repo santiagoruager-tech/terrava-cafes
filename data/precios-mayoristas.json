@@ -1,5 +1,5 @@
 {
-  "vigencia": "Junio 2026",
+  "vigencia": "Septiembre 2026",
   "moneda": "ARS",
   "config": {
     "whatsapp": "5492215079937",
@@ -23,7 +23,7 @@
       "pvpSugerido125": 8500,
       "precio250": 11500,
       "pvpSugerido250": 15900,
-      "precioKg": 45000,
+      "precioKg": 40000,
       "pvpSugerido1kg": 58000,
       "color": "c1",
       "disponible": true
@@ -42,7 +42,7 @@
       "pvpSugerido125": 9500,
       "precio250": 13500,
       "pvpSugerido250": 19500,
-      "precioKg": 49000,
+      "precioKg": 45000,
       "pvpSugerido1kg": 66000,
       "color": "c2",
       "disponible": true
@@ -61,7 +61,7 @@
       "pvpSugerido125": 9500,
       "precio250": 13500,
       "pvpSugerido250": 19500,
-      "precioKg": 49000,
+      "precioKg": 45000,
       "pvpSugerido1kg": 66000,
       "color": "c3",
       "disponible": true
@@ -102,6 +102,25 @@
       "precioKg": 54000,
       "pvpSugerido1kg": 76000,
       "color": "c5",
+      "disponible": true
+    },
+    {
+      "numero": "06",
+      "nombre": "ETIOPÍA GUJI",
+      "origen": "Etiopía",
+      "region": "Guji · Sur de Etiopía",
+      "variedad": "Heirloom",
+      "altura": "1.630 msnm",
+      "proceso": "Natural",
+      "notas": ["Cítricos", "Té negro", "Miel"],
+      "perfil": "Un etíope natural, aromático y luminoso: nota cítrica marcada, fondo a té negro y un dulzor a miel que redondea la taza. Cuerpo jugoso de peso medio y final limpio. Se luce en métodos de filtrado y como espresso de carácter; aporta contraste y complejidad a una carta de especialidad.",
+      "precio125": 6800,
+      "pvpSugerido125": 9500,
+      "precio250": 13500,
+      "pvpSugerido250": 19500,
+      "precioKg": 45000,
+      "pvpSugerido1kg": 66000,
+      "color": "c6",
       "disponible": true
     }
   ]
