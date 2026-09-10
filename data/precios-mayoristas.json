@@ -83,7 +83,8 @@
       "precioKg": 52000,
       "pvpSugerido1kg": 72000,
       "color": "c4",
-      "disponible": true
+      "disponible": true,
+      "sinStock": true
     },
     {
       "numero": "05",
@@ -102,7 +103,8 @@
       "precioKg": 54000,
       "pvpSugerido1kg": 76000,
       "color": "c5",
-      "disponible": true
+      "disponible": true,
+      "sinStock": true
     },
     {
       "numero": "06",
